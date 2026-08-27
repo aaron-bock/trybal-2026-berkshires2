@@ -66,10 +66,10 @@ h1{
 }
 .days{display:flex;gap:6px}
 .day{
-  flex:1;appearance:none;border:1px solid var(--rule-2);background:var(--card);
+  flex:1;min-width:0;appearance:none;border:1px solid var(--rule-2);background:var(--card);
   color:var(--ink-2);border-radius:8px;padding:9px 8px;cursor:pointer;
   font-family:"Archivo",sans-serif;font-weight:600;font-size:14px;letter-spacing:-.01em;
-  display:flex;flex-direction:column;align-items:center;gap:1px;min-height:46px;
+  display:flex;flex-direction:column;align-items:center;gap:1px;min-height:46px;padding:9px 4px;
 }
 .day small{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;font-weight:400;color:var(--ink-3)}
 .day[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
@@ -417,17 +417,19 @@ body.ro .lead,body.ro .movebtn,body.ro .undo,body.ro label.row input,body.ro .re
   <header class="mast">
     <div class="kicker">Trybal Berkshires · Eisner Camp · Session 2</div>
     <h1>Run of Show &amp; Setup Checklist</h1>
-    <p class="sub">Thursday Aug 27 &amp; Friday Aug 28, 2026. Every setup, production, A/V and Eisner task pulled from the main Session 2 schedule. Saved in your own browser on this device &mdash; this public copy does not sync between people. A/V tasks default to Justin, and any task can be moved, searched for, or deleted and restored.</p>
+    <p class="sub">Thursday Aug 27 &ndash; Sunday Aug 30, 2026. Every setup, production, A/V and Eisner task pulled from the main Session 2 schedule. Shared live &mdash; checks, leads, moves and deletions are the same for everyone with this link. A/V tasks default to Justin, and any task can be moved, searched for, or deleted and restored.</p>
   </header>
 
   <div class="bar">
     <div class="days">
-      <button class="day" data-day="thu" aria-pressed="true">Thursday<small>AUG 27</small></button>
-      <button class="day" data-day="fri" aria-pressed="false">Friday<small>AUG 28</small></button>
+      <button class="day" data-day="thu" aria-pressed="true">Thu<small>AUG 27</small></button>
+      <button class="day" data-day="fri" aria-pressed="false">Fri<small>AUG 28</small></button>
+      <button class="day" data-day="sat" aria-pressed="false">Sat<small>AUG 29</small></button>
+      <button class="day" data-day="sun" aria-pressed="false">Sun<small>AUG 30</small></button>
     </div>
     <div class="searchwrap">
       <span class="mag">&#9906;</span>
-      <input class="search" id="search" type="text" autocomplete="off" placeholder="Search tasks, slots, notes&hellip;" aria-label="Search tasks">
+      <input class="search" id="search" type="text" autocomplete="off" placeholder="Search all four days&hellip;" aria-label="Search tasks">
       <button class="searchx" id="searchx" hidden aria-label="Clear search">&times;</button>
     </div>
     <div class="filters">
@@ -461,7 +463,7 @@ body.ro .lead,body.ro .movebtn,body.ro .undo,body.ro label.row input,body.ro .re
 
   <div class="livenote">
     <span class="bullet">&#9679;</span>
-    <span><b>This is a public read-along copy.</b> Ticking a box, setting a lead or moving a task is kept in <em>your</em> browser on <em>this</em> device only &mdash; nobody else sees it, and it will not follow you to another phone. Use it to read the run of show; keep the real assignments in the shared board.</span>
+    <span><b>Everyone with this link sees the same board.</b> Tick a box, set a lead or move a task and it reaches every other open copy within a couple of seconds &mdash; their page updates to match. The chip by the progress bar reads <b>Live &middot; shared</b> when you are connected, <b>Saving&hellip;</b> while a change goes out, <b>View only</b> if you were given read access, and <b>This device only</b> where the page cannot sync at all.</span>
   </div>
 
   <div class="note">
@@ -469,10 +471,10 @@ body.ro .lead,body.ro .movebtn,body.ro .undo,body.ro label.row input,body.ro .re
     <ul>
       <li><b>Times marked <span style="font-family:'IBM Plex Mono',monospace">PROPOSED</span></b> are mine, back-timed from each event. The schedule states start times for events, not for setup — the only stated setup window is Dining Hall 2:00–4:00 pm. Adjust freely.</li>
       <li><b>A dashed lead pill is a default, not a decision.</b> Every A/V task starts on Justin with a dashed outline. Pick anyone from the pill — Aaron, Philippe, Justin, Hannah, Shawn or Sam — and it turns solid. "Other…" lets you type any other name. <em>Reset</em> clears all leads back to the defaults.</li>
-      <li><b>Nothing is locked to its slot.</b> <em>Move</em> on any task sends it to any other time slot on either day — it lands there tagged with where it came from, with a one-tap undo.</li>
-      <li><b>Search covers both days at once.</b> Type in the box and matching tasks appear grouped under their slots, labelled Thu or Fri. Clear it to go back to the timeline.</li>
-      <li><b>Deleting is reversible.</b> <em>Delete</em> asks once, then hides the task in your copy. Every deleted task is listed at the bottom of the page with a Restore button.</li>
-      <li><b>Reset clears your own copy.</b> It asks once before it does, and only affects this device.</li>
+      <li><b>Nothing is locked to its slot.</b> <em>Move</em> on any task sends it to any other time slot on any day — it lands there tagged with where it came from, with a one-tap undo.</li>
+      <li><b>Search covers all four days at once.</b> Type in the box and matching tasks appear grouped under their slots, labelled by day. Clear it to go back to the timeline.</li>
+      <li><b>Deleting is shared and reversible.</b> <em>Delete</em> asks once, then removes the task for everyone. Every deleted task is listed at the bottom of the page with a Restore button.</li>
+      <li><b>Reset clears the board for everyone.</b> It asks once before it does.</li>
       <li><b>Lane tags are conservative.</b> The doc's color key (red Eisner / blue Production / green Aaron / pink A/V) did not survive the export, so a lane is tagged only where the text itself says so. Untagged rows are setup with no stated owner.</li>
     </ul>
   </div>
@@ -502,7 +504,7 @@ body.ro .lead,body.ro .movebtn,body.ro .undo,body.ro label.row input,body.ro .re
 
   <section class="trash" id="trash" hidden>
     <h2 id="trashhead">Deleted tasks</h2>
-    <p class="hint">Deleted from your copy, but never gone &mdash; restore any of them back into their original slot.</p>
+    <p class="hint">Deleted for everyone, but never gone &mdash; restore any of them back into their original slot.</p>
     <ul id="trashlist"></ul>
   </section>
 
@@ -513,7 +515,7 @@ body.ro .lead,body.ro .movebtn,body.ro .undo,body.ro label.row input,body.ro .re
   </section>
 
   <footer>
-    Shared state lives in this page &mdash; each change publishes a new version that every open copy loads. Built from the main "Session 2 – Berkshires 2026 Schedule" tab. The "Amy" tab conflicts on several points (16 tables vs 13 for Trybal TV, Universal Lawn vs Shawn's Lawn for Thursday afterhours, and different elective leads in every round) — those differences are not reflected here.
+    Shared state lives in this page &mdash; each change publishes a new version that every open copy loads. Built from the main "Session 2 – Berkshires 2026 Schedule" tab, plus the post-session checklist for Sunday. The "Amy" tab conflicts on several points (16 tables vs 13 for Trybal TV, Universal Lawn vs Shawn's Lawn for Thursday afterhours, and different elective leads in every round) — those differences are not reflected here.
   </footer>
   <div class="sheet" id="sheet" hidden>
     <div class="sheetbg" data-close></div>
@@ -532,298 +534,1995 @@ body.ro .lead,body.ro .movebtn,body.ro .undo,body.ro label.row input,body.ro .re
 
 
 <script>
-const DATA={thu:[
-{t:"1:00 PM",p:1,k:"prep",h:"Pre-camp pull &amp; stage",loc:"Office / storage / kitchen",i:[
- {t:"Collect the bin of 30 objects for TaskMaster",m:"Doc flags this as still to be gathered"},
- {t:"Ask Pele for 2–3 trays for Champagne &amp; Cookies"},
- {t:"Get the biggest bowl from the kitchen for name tags / water bottles"},
- {t:"Signs reframed and brought to check-in",f:1},
- {t:"Elective sheets",m:"Listed as evening homework — do now if there's time"},
- {t:"Prize notecards",m:"Evening homework"},
- {t:"Connections prompts",m:"e.g. four celebrities who follow Eitan; things that come out of your nose"},
- {t:"Trybal Tribune — Carine, Eitan, Shawn",m:"Evening homework"}]},
-
-{t:"2:00 PM",p:1,k:"prep",h:"Quad station build — Arrival &amp; Check-in",loc:"The Quad · 20 tables available, 8 picnic tables, canoe",i:[
- {t:"Make the rain call",m:"Doc says \"plan for inside again\" — decide early enough to move tables"},
- {t:"Set stations on the Quad"},
- {t:"Champagne &amp; Cookies — flutes assembled, bring cups as backup",f:1},
- {t:"Reserve some champagne for Sip 'n' Paint",m:"Plenty available; the rest is free for check-in"},
- {t:"Swag bags / bunk assignments brought to check-in and set up",m:"Already assembled",f:1},
- {t:"Shawn in the Sheets — bring to station",f:1,g:"Doc reads \"Brought to\" — destination was never filled in."},
- {t:"Name tags / water bottles in the big kitchen bowl",f:1},
- {t:"Cotton candy: machine, cones, sugar + extension cord",f:1},
- {t:"Mailbox Buddies station",f:1},
- {t:"DJ vibes — whatever Justin needs",l:"av"}]},
-
-{t:"2:30 PM",p:1,k:"prep",h:"Bubbe's Beer Garden",loc:"Sam owns this",i:[
- {t:"Flamingos — half here, half held back for the pool"},
- {t:"Lawn games",f:1},
- {t:"Friendship bracelets, picnic tables, etc.",f:1},
- {t:"Chalkboard",f:1,g:"Amy tab has a prompt written for this: \"Someone should start a rumor that ______\""},
- {t:"Trampolines &amp; bubbles set out"},
- {t:"Canoe + 1 case vitamin water",l:"prod"},
- {t:"Snack"}]},
-
-{t:"3:30 PM",p:1,k:"prep",h:"Arrival logistics",loc:"Parking lot &amp; entry road",i:[
- {t:"Golf cart staged at the parking lot to help people"},
- {t:"Parking / directional signage posted"},
- {t:"Confirm bus ETA",m:"Scheduled to arrive 4:30–5:00 pm"}]},
-
-{t:"4:00 – 6:00 PM",k:"event",h:"Arrival &amp; Check-in",loc:"The Quad",i:[
- {t:"Bus arrives 4:30–5:00 pm"},
- {t:"Stations live — restock cookies, champagne, cotton candy through the window"}]},
-
-{t:"5:45 PM",p:1,k:"prep",h:"Opening Ceremony A/V check",i:[
- {t:"Speaker",l:"av"},
- {t:"Wireless mic",l:"av"},
- {t:"Confetti rings staged"}]},
-
-{t:"6:00 – 6:30 PM",k:"event",h:"Opening Ceremony",i:[]},
-
-{t:"6:15 PM",p:1,k:"prep",h:"Rotation stations staffed &amp; stocked",loc:"Order: FART Barn → Beit Am → BBG → Shawn's Lawn → Dock",i:[
- {t:"1. Selfie — FART Barn — Amanda"},
- {t:"2. Campfire — Beit Am campfire",f:1},
- {t:"3. Parachute — BBG",f:1},
- {t:"4. Group Jump Rope &amp; Photos — Shawn's Lawn — Jay, Hannah S.",m:"Jeff Fein noted for random team building — unconfirmed"},
- {t:"5. Singdown — Dock — Micah and Jeff"}]},
-
-{t:"6:30 – 7:45 PM",k:"event",h:"Rotations / Tour",i:[]},
-
-{t:"7:15 PM",p:1,k:"prep",h:"Silent Disco build",loc:"BBG · rain location Beit Am",i:[
- {t:"Walk 3 headphone tables to the front of the stage",l:"av",g:"Doc reads \"will need to be walked over from ___\" — origin never specified."},
- {t:"2 tables in back by the A/V booth for drinks",l:"prod"},
- {t:"Confirm the Beit Am rain location is ready"}]},
-
-{t:"7:30 PM",p:1,k:"prep",h:"Trybal TV Nite build",loc:"Beit Am · runs parallel with Silent Disco at BBG",i:[
- {t:"13 tables + 10 chairs each, U shape",g:"Bunk roster lists 14 bunks and the Amy tab says 16 tables. Confirm the count before you set."},
- {t:"3 extra tables covered in plastic"},
- {t:"Whiteboard + dry erase markers at every table"},
- {t:"Bunk name on every table"},
- {t:"Supplies out: pens, Crayola markers, paper, several rolls of paper towels"},
- {t:"Bin of 30 objects at the TaskMaster station"},
- {t:"15 topo chicos — check they are full",m:"TaskMaster bit is stuffing the banana into the topo chico"},
- {t:"15 bananas + 15 bottle openers"},
- {t:"Drinks in bus bins — 5 bins: Truly, Downeast, Crystal Light",l:"prod"},
- {t:"A/V: Justin + Adam with laptop",l:"av"}]},
-
-{t:"8:10 – 8:45 PM",k:"event",h:"Dinner",i:[
- {t:"Bring the sheets from check-in to the back of the dining hall"}]},
-
-{t:"8:45 – 9:15 PM",k:"event",h:"Transition — get warmer clothes",i:[]},
-
-{t:"9:15 – 10:45 PM",k:"event",h:"Evening Program: Trybal TV Nite",loc:"Beit Am",i:[
- {t:"Run order: IMDB bunk profile → Family Feud → Price is Right → Commercials Pt 1 → Name That Tune → Commercials Pt 2 → TaskMaster"},
- {t:"Drinks — Production",l:"prod"},
- {t:"All staff present electives Rounds 1–3 + Early Risers"},
- {t:"Remind everyone about Funky Hat Friday"}]},
-
-{t:"10:30 PM",p:1,k:"prep",h:"Afterhours Campfire build",loc:"Shawn's Lawn",i:[
- {t:"Confirm Eisner built the fire circle",l:"eisner"},
- {t:"Campfire, benches in a circle, extra wood, lighter"},
- {t:"Table + trash"},
- {t:"S'mores bar",l:"prod"},
- {t:"Bring drinks from Beit Am, restocking en route",l:"prod"},
- {t:"1 production staffer assigned to the fire",f:1}]},
-
-{t:"11:00 PM – till",k:"event",h:"Afterhours Campfire",loc:"Shawn's Lawn",i:[
- {t:"Staff lead: Jeff, Micah + Josh"},
- {t:"Bigs &amp; Littles meet"},
- {t:"Staff meeting"}]},
-
-{t:"12:00 AM",k:"hard",h:"CONFIRM FIRES ARE OUT",i:[]}
-],
-fri:[
-{t:"7:00 AM",p:1,k:"prep",h:"Early Risers build",loc:"The Dock",i:[
- {t:"Yoga mats from Raccoon Manor",l:"prod"},
- {t:"Extension cords from Raccoon Manor to the dock",l:"av"},
- {t:"1 table at the dock"},
- {t:"A/V — Justin's business",l:"av"}]},
-
-{t:"7:30 – 8:15 AM",k:"event",h:"Early Risers: Yoga on the Dock",loc:"Staff lead: Ari, Yael",i:[]},
-
-{t:"8:00 AM",p:1,k:"prep",h:"Breakfast setup",loc:"Dining Hall",i:[
- {t:"Cold coffee in bins at the back of the dining hall",l:"prod"},
- {t:"Prize Wheel &amp; Oprah Giveaways — bring from the office",f:1,g:"Main schedule leaves the owner blank. Amy tab has Harris."},
- {t:"Connections — Samantha"}]},
-
-{t:"8:30 – 9:15 AM",k:"event",h:"Breakfast",i:[
- {t:"9:00 AM — Irene Rosenzweig arrives"}]},
-
-{t:"9:00 AM",p:1,k:"prep",h:"Elective Round 1 station prep",i:[
- {t:"Mahjong set up in BK Lounge"},
- {t:"Paper 3 picnic tables at Shawn's Lawn"},
- {t:"Yoga mats at the dock — check with Yael first"},
- {t:"Speaker to Mailboxes (Bachata)",l:"av"},
- {t:"Speaker to Hockey Barn (Human Foosball)",l:"av"},
- {t:"Challenge Course open",l:"eisner"},
- {t:"Pool open",l:"eisner"}]},
-
-{t:"9:15 – 9:30 AM",k:"event",h:"Transition",loc:"Info Booth™ — Jeff Fein",i:[]},
-
-{t:"9:30 – 10:30 AM",k:"event",h:"Elective Round 1",loc:"10 electives",i:[
- {t:"Block Printed Tote Bags — FART Barn — Amanda (15)",l:"aaron",m:"Listed as Aaron's FART Barn"},
- {t:"Human Foosball — Hockey Pavilion — Jeff (14)"},
- {t:"Bachata Dancing — Mailboxes — Micah (15)"},
- {t:"Pickleball Beginners — Tennis Courts — Josh/Amit (12)"},
- {t:"Bialy Baking — Dining Hall — Liz (12)"},
- {t:"Persian Pickling — Shawn's Lawn — Shawn (12)"},
- {t:"Aerial Adventure — Challenge Course — Brooklyn (15)"},
- {t:"Mahjong — BK Lounge — Irene (12)"},
- {t:"Myofascial Release — Dock — Yael (12)"},
- {t:"Model Rocketry — FART Barn Upstairs — Eitan (12)",l:"aaron"}]},
-
-{t:"10:30 – 10:45 AM",p:1,k:"prep",h:"Transition — Round 2 flip",i:[
- {t:"Speaker stays at Hockey Barn (Human Foosball)",l:"av"},
- {t:"Speaker to Tree on the Hill (Slip 'n' Slide) — BATTERY POWERED",l:"av",m:"No outlet at that location"},
- {t:"Drinks to FART Barn upstairs — ask Brooklyn what she wants",l:"prod"},
- {t:"Lake open: Boating &amp; Aqua Ninja Park",l:"eisner"},
- {t:"Challenge Course",l:"eisner"}]},
-
-{t:"10:45 – 11:45 AM",k:"event",h:"Elective Round 2",i:[
- {t:"Block Printed Tote Bags — FART Barn — Amanda (15)",l:"aaron"},
- {t:"Human Foosball — Hockey Pavilion — Eitan (16)"},
- {t:"Slip 'n' Slide Surprise — Tree on the Hill — Josh/Jeff (14)"},
- {t:"Bialy Baking — Dining Hall — Liz (12)"},
- {t:"Moroccan Preserved Lemons — Shawn's Lawn — Shawn (12)"},
- {t:"Aerial Adventure — High Ropes — Eisner + Micah (15)",l:"eisner"},
- {t:"Sip 'n' Paint — FART Barn Upstairs — Brooklyn (15)",l:"aaron",m:"Champagne held back from Thursday check-in"},
- {t:"Mahjong — BK Lounge — Irene + campers (16)"},
- {t:"Herbal Bath Salt — BBG — Yael (12)"},
- {t:"Aqua Ninja Park — Lake (15)",f:1,g:"Lead is blank in the main schedule. Amy tab has Josh."}]},
-
-{t:"12:00 – 1:00 PM",k:"event",h:"Lunch",i:[
- {t:"Commonalities — staff lead",f:1,g:"Doc reads \"Shawn? Eitan?\" — never decided."},
- {t:"Funky Hat Friday™"},
- {t:"Staff meeting — Shabbat &amp; Pool Party review"}]},
-
-{t:"1:00 – 1:30 PM",p:1,k:"prep",h:"Break — Round 3 flip",i:[
- {t:"Info Booth™ — Jeff"},
- {t:"Ice to FART Barn",l:"prod"},
- {t:"Drinks to BBG — ask Brooklyn",l:"prod"},
- {t:"Speaker to Mailboxes (Salsa)",l:"av"},
- {t:"Speaker at Tree on the Hill (Slip 'n' Slide)",l:"av"},
- {t:"Challenge Course",l:"eisner"}]},
-
-{t:"1:30 – 2:30 PM",k:"event",h:"Elective Round 3",i:[
- {t:"Ice Dye — FART Barn — Amanda (15)",l:"aaron"},
- {t:"Slip 'n' Slide Surprise — Tree on the Hill — Josh/Jeff (16)"},
- {t:"Salsa Dancing — Mailboxes — Justin (16)",m:"Justin is also the A/V lead — check he can cover both"},
- {t:"Babka-licious Baking — Dining Hall — Liz (12)",g:"Overlaps the 2:00–4:00 pm dining hall setup for Shabbat."},
- {t:"Tequila Gedola Mixology — BBG — Brooklyn + Dror (15)"},
- {t:"Moroccan Preserved Lemons — Shawn's Lawn — Shawn (12)"},
- {t:"Aerial Adventure — High Ropes — Eisner + Micah (15)",l:"eisner"},
- {t:"Dead Sea Mud Masks — FART Barn Upstairs — Maayan + Bar (12)",l:"aaron"},
- {t:"Pimp My Hinge (or other) — BK Lounge — Eitan (15)"},
- {t:"Myofascial Release — Dock — Yael (15)"}]},
-
-{t:"1:45 PM",p:1,k:"prep",h:"Pool Party build — \"Flamingle\"",loc:"⚠ Overlaps Elective Round 3 and the dining hall setup",i:[
- {t:"Tablecloths — 2 drinks tables, 1 DJ table"},
- {t:"Garlands on the pop-up tent"},
- {t:"Half the lawn flamingos moved from BBG to the pool"},
- {t:"Flamingo coozies — Josh leads with ambassadors"},
- {t:"4 snack tables by the pool"},
- {t:"Snacks: Vego bears (all), Beans (50), Matzah Project (all), Maine crackers",l:"prod"},
- {t:"Drinks: Suncruiser, Truly, Topo Chico cans, IPAs, Crystal Light, Sinless Spirit, Dogfishhead, Down East, Athletic Brewing, Vitamin Water (2 cases)",l:"prod"},
- {t:"Drinks setup / reloading crew",f:1},
- {t:"Shmoozers",f:1},
- {t:"Clean-up crew",f:1}]},
-
-{t:"2:00 – 4:00 PM",k:"event",h:"Dining Hall Setup",loc:"Production: Sam · the only setup window the doc actually times",i:[
- {t:"Move uplit TRYBAL letters from the plaque barn + four blue lights",l:"prod"},
- {t:"One set of ritual items at the front",l:"prod"},
- {t:"Unlit tea lights on the tables",l:"prod"},
- {t:"Lit votive candles",l:"prod"},
- {t:"Extension cord for the lights",l:"av"}]},
-
-{t:"2:30 – 5:30 PM",k:"event",h:"Pool Party &amp; Free Time",loc:"Pool closes at 5:00 · Theme: Flamingle",i:[]},
-
-{t:"4:15 PM",p:1,k:"prep",h:"Soirée en Blanc build",loc:"Theme: Shabbat Impressions",i:[
- {t:"11 tables + tablecloths"},
- {t:"Signs in plastic frames"},
- {t:"Confirm Eisner is doing the snack",l:"eisner",m:"Doc: \"make sure they do it\""},
- {t:"Metal stamping station"},
- {t:"Letter writing + wax seal — Shawn"},
- {t:"Cocktails: spiked pickle lemonade — Liz",m:"Ask Liz what help she needs"},
- {t:"Bartenders: ice + whatever mixers they ask for",l:"prod"},
- {t:"Bigs/Littles mugs set up — Samantha, Josh"},
- {t:"Pressure points — Yael &amp; Brooklyn"},
- {t:"Night elective signup + Saturday affinity table signup",f:1}]},
-
-{t:"5:00 PM",p:1,k:"prep",h:"Services &amp; A/V check",i:[
- {t:"Outdoor lighting up",l:"av",m:"Outlet locations were set during pre-camp"},
- {t:"Silent disco",l:"av"},
- {t:"Speaker with mic",l:"av"},
- {t:"Justin on A/V, assist from Michael",l:"av"},
- {t:"Shabbat-O-Grams staged — 4 people on 2 golf carts"}]},
-
-{t:"5:45 – 6:15 PM",k:"event",h:"Bunk time",i:[
- {t:"All program staff assigned to bunks"},
- {t:"Pitch the night electives",f:1,g:"No owner listed."}]},
-
-{t:"6:15 – 7:00 PM",k:"event",h:"Soirée en Blanc",i:[]},
-
-{t:"7:10 – 7:50 PM",k:"event",h:"Shabbat Services",i:[
- {t:"Shabbat-O-Grams run out to pillows during services",m:"4 people, 2 golf carts"}]},
-
-{t:"8:00 – 9:00 PM",k:"event",h:"Shabbat Dinner",i:[
- {t:"Light the votive candles",l:"prod"},
- {t:"Candle lighting — Israelis"},
- {t:"Alumni ceremony — bring swag from the office",m:"Assist from Adam and Josh"}]},
-
-{t:"9:00 PM",p:1,k:"prep",h:"Dinner strike + Night Electives build",loc:"Manor House Lawn &amp; satellites",i:[
- {t:"Letters and lights back to the plaque barn",l:"prod"},
- {t:"Everyone not running a night elective is on clean-up"},
- {t:"Campfire, benches in a circle, extra wood, lighter, s'mores — Manor House Lawn"},
- {t:"4 tables for bartender / s'mores snacks",l:"prod"},
- {t:"4 mics if possible",l:"av"},
- {t:"Patio lights on at the Manor House — ask Pele"},
- {t:"2 tables, papered, for Dror's mixology",l:"prod"},
- {t:"Wireless speaker with mic, yoga mats, Eddie Bauer picnic blankets → soccer field",l:"av"},
- {t:"Glow bracelets for the ghost hike"},
- {t:"Glow sticks for the night zipline"}]},
-
-{t:"9:00 – 9:30 PM",k:"event",h:"Transition &amp; Change",i:[]},
-
-{t:"9:30 – 11:00 PM",k:"event",h:"Night Electives",loc:"Gather at BBG at 9:30, then head to locations",i:[
- {t:"Star party @ soccer field — Rick"},
- {t:"Ghost hike — Jeff, Yael (14 people)"},
- {t:"Tricked Out S'mores @ Manor House Lawn — Liz",m:"Liz's own supplies"},
- {t:"Israeli Mixology @ Manor House — Dror",m:"Dror's own ingredients"},
- {t:"Night zipline",f:1},
- {t:"Elective presentations, Rounds 4–5"},
- {t:"Staff meeting"}]},
-
-{t:"11:00 PM – 12:00 AM",k:"event",h:"After Hours Campfire",i:[
- {t:"Staff assignments",f:1,g:"Doc says \"Assignments TBD\"."},
- {t:"Josh: tap Color War captains"}]},
-
-{t:"12:00 AM",k:"hard",h:"CONFIRM FIRES ARE OUT",i:[]},
-
-{t:"Overnight",p:1,k:"prep",h:"Evening homework",loc:"Or pre-camp if there's time",i:[
- {t:"Elective sheets"},
- {t:"Prize notecards"},
- {t:"Print Connections"},
- {t:"Trybal Tribune"}]}
-]};
+const DATA={
+ "thu": [
+  {
+   "t": "1:00 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Pre-camp pull &amp; stage",
+   "loc": "Office / storage / kitchen",
+   "i": [
+    {
+     "t": "Collect the bin of 30 objects for TaskMaster",
+     "m": "Doc flags this as still to be gathered",
+     "id": "thu-1x69haq.1tgy0k3"
+    },
+    {
+     "t": "Ask Pele for 2–3 trays for Champagne &amp; Cookies",
+     "id": "thu-1x69haq.127j82z"
+    },
+    {
+     "t": "Get the biggest bowl from the kitchen for name tags / water bottles",
+     "id": "thu-1x69haq.zuxa6i"
+    },
+    {
+     "t": "Signs reframed and brought to check-in",
+     "f": 1,
+     "id": "thu-1x69haq.b29cpq"
+    },
+    {
+     "t": "Elective sheets",
+     "m": "Listed as evening homework — do now if there's time",
+     "id": "thu-1x69haq.lk7n7y"
+    },
+    {
+     "t": "Prize notecards",
+     "m": "Evening homework",
+     "id": "thu-1x69haq.3dsuj8"
+    },
+    {
+     "t": "Connections prompts",
+     "m": "e.g. four celebrities who follow Eitan; things that come out of your nose",
+     "id": "thu-1x69haq.7g77pd"
+    },
+    {
+     "t": "Trybal Tribune — Carine, Eitan, Shawn",
+     "m": "Evening homework",
+     "id": "thu-1x69haq.6sybgc"
+    }
+   ],
+   "id": "thu-1x69haq"
+  },
+  {
+   "t": "2:00 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Quad station build — Arrival &amp; Check-in",
+   "loc": "The Quad · 20 tables available, 8 picnic tables, canoe",
+   "i": [
+    {
+     "t": "Make the rain call",
+     "m": "Doc says \"plan for inside again\" — decide early enough to move tables",
+     "id": "thu-2hdh7t.1i13w9m"
+    },
+    {
+     "t": "Set stations on the Quad",
+     "id": "thu-2hdh7t.160xf0d"
+    },
+    {
+     "t": "Champagne &amp; Cookies — flutes assembled, bring cups as backup",
+     "f": 1,
+     "id": "thu-2hdh7t.1kyl9cp"
+    },
+    {
+     "t": "Reserve some champagne for Sip 'n' Paint",
+     "m": "Plenty available; the rest is free for check-in",
+     "id": "thu-2hdh7t.1pa2fyu"
+    },
+    {
+     "t": "Swag bags / bunk assignments brought to check-in and set up",
+     "m": "Already assembled",
+     "f": 1,
+     "id": "thu-2hdh7t.1t6u2h3"
+    },
+    {
+     "t": "Shawn in the Sheets — bring to station",
+     "f": 1,
+     "g": "Doc reads \"Brought to\" — destination was never filled in.",
+     "id": "thu-2hdh7t.1btvbbx"
+    },
+    {
+     "t": "Name tags / water bottles in the big kitchen bowl",
+     "f": 1,
+     "id": "thu-2hdh7t.kcxqia"
+    },
+    {
+     "t": "Cotton candy: machine, cones, sugar + extension cord",
+     "f": 1,
+     "id": "thu-2hdh7t.nppa6s"
+    },
+    {
+     "t": "Mailbox Buddies station",
+     "f": 1,
+     "id": "thu-2hdh7t.uuixz7"
+    },
+    {
+     "t": "DJ vibes — whatever Justin needs",
+     "l": "av",
+     "id": "thu-2hdh7t.d6sdqs"
+    }
+   ],
+   "id": "thu-2hdh7t"
+  },
+  {
+   "t": "2:30 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Bubbe's Beer Garden",
+   "loc": "Sam owns this",
+   "i": [
+    {
+     "t": "Flamingos — half here, half held back for the pool",
+     "id": "thu-yxrhck.z2b5rr"
+    },
+    {
+     "t": "Lawn games",
+     "f": 1,
+     "id": "thu-yxrhck.dyffic"
+    },
+    {
+     "t": "Friendship bracelets, picnic tables, etc.",
+     "f": 1,
+     "id": "thu-yxrhck.1dm9agd"
+    },
+    {
+     "t": "Chalkboard",
+     "f": 1,
+     "g": "Amy tab has a prompt written for this: \"Someone should start a rumor that ______\"",
+     "id": "thu-yxrhck.1d6orrs"
+    },
+    {
+     "t": "Trampolines &amp; bubbles set out",
+     "id": "thu-yxrhck.1ccda7p"
+    },
+    {
+     "t": "Canoe + 1 case vitamin water",
+     "l": "prod",
+     "id": "thu-yxrhck.196uyow"
+    },
+    {
+     "t": "Snack",
+     "id": "thu-yxrhck.nxk58t"
+    }
+   ],
+   "id": "thu-yxrhck"
+  },
+  {
+   "t": "3:30 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Arrival logistics",
+   "loc": "Parking lot &amp; entry road",
+   "i": [
+    {
+     "t": "Golf cart staged at the parking lot to help people",
+     "id": "thu-b8i7b4.1bg1b21"
+    },
+    {
+     "t": "Parking / directional signage posted",
+     "id": "thu-b8i7b4.1vkc1ll"
+    },
+    {
+     "t": "Confirm bus ETA",
+     "m": "Scheduled to arrive 4:30–5:00 pm",
+     "id": "thu-b8i7b4.12nlnjt"
+    }
+   ],
+   "id": "thu-b8i7b4"
+  },
+  {
+   "t": "4:00 – 6:00 PM",
+   "k": "event",
+   "h": "Arrival &amp; Check-in",
+   "loc": "The Quad",
+   "i": [
+    {
+     "t": "Bus arrives 4:30–5:00 pm",
+     "id": "thu-1xf4n0j.6oo1r7"
+    },
+    {
+     "t": "Stations live — restock cookies, champagne, cotton candy through the window",
+     "id": "thu-1xf4n0j.7hnazi"
+    }
+   ],
+   "id": "thu-1xf4n0j"
+  },
+  {
+   "t": "5:45 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Opening Ceremony A/V check",
+   "i": [
+    {
+     "t": "Speaker",
+     "l": "av",
+     "id": "thu-ftiicq.u3il0i"
+    },
+    {
+     "t": "Wireless mic",
+     "l": "av",
+     "id": "thu-ftiicq.168mg7i"
+    },
+    {
+     "t": "Confetti rings staged",
+     "id": "thu-ftiicq.1bbry7k"
+    }
+   ],
+   "id": "thu-ftiicq"
+  },
+  {
+   "t": "6:00 – 6:30 PM",
+   "k": "event",
+   "h": "Opening Ceremony",
+   "i": [],
+   "id": "thu-jdjl62"
+  },
+  {
+   "t": "6:15 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Rotation stations staffed &amp; stocked",
+   "loc": "Order: FART Barn → Beit Am → BBG → Shawn's Lawn → Dock",
+   "i": [
+    {
+     "t": "1. Selfie — FART Barn — Amanda",
+     "id": "thu-1t3zrrs.125m20s"
+    },
+    {
+     "t": "2. Campfire — Beit Am campfire",
+     "f": 1,
+     "id": "thu-1t3zrrs.1w74fsp"
+    },
+    {
+     "t": "3. Parachute — BBG",
+     "f": 1,
+     "id": "thu-1t3zrrs.3qjzoq"
+    },
+    {
+     "t": "4. Group Jump Rope &amp; Photos — Shawn's Lawn — Jay, Hannah S.",
+     "m": "Jeff Fein noted for random team building — unconfirmed",
+     "id": "thu-1t3zrrs.101q4pa"
+    },
+    {
+     "t": "5. Singdown — Dock — Micah and Jeff",
+     "id": "thu-1t3zrrs.teyn4g"
+    }
+   ],
+   "id": "thu-1t3zrrs"
+  },
+  {
+   "t": "6:30 – 7:45 PM",
+   "k": "event",
+   "h": "Rotations / Tour",
+   "i": [],
+   "id": "thu-1892u9m"
+  },
+  {
+   "t": "7:15 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Silent Disco build",
+   "loc": "BBG · rain location Beit Am",
+   "i": [
+    {
+     "t": "Walk 3 headphone tables to the front of the stage",
+     "l": "av",
+     "g": "Doc reads \"will need to be walked over from ___\" — origin never specified.",
+     "id": "thu-oi354w.1415hkj"
+    },
+    {
+     "t": "2 tables in back by the A/V booth for drinks",
+     "l": "prod",
+     "id": "thu-oi354w.1fnc8fq"
+    },
+    {
+     "t": "Confirm the Beit Am rain location is ready",
+     "id": "thu-oi354w.r1946q"
+    }
+   ],
+   "id": "thu-oi354w"
+  },
+  {
+   "t": "7:30 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Trybal TV Nite build",
+   "loc": "Beit Am · runs parallel with Silent Disco at BBG",
+   "i": [
+    {
+     "t": "13 tables + 10 chairs each, U shape",
+     "g": "Bunk roster lists 14 bunks and the Amy tab says 16 tables. Confirm the count before you set.",
+     "id": "thu-1e42jm.1ppzwvr"
+    },
+    {
+     "t": "3 extra tables covered in plastic",
+     "id": "thu-1e42jm.mdmxsq"
+    },
+    {
+     "t": "Whiteboard + dry erase markers at every table",
+     "id": "thu-1e42jm.1smw6xf"
+    },
+    {
+     "t": "Bunk name on every table",
+     "id": "thu-1e42jm.6hl3oo"
+    },
+    {
+     "t": "Supplies out: pens, Crayola markers, paper, several rolls of paper towels",
+     "id": "thu-1e42jm.qbn3p7"
+    },
+    {
+     "t": "Bin of 30 objects at the TaskMaster station",
+     "id": "thu-1e42jm.1bi5xmv"
+    },
+    {
+     "t": "15 topo chicos — check they are full",
+     "m": "TaskMaster bit is stuffing the banana into the topo chico",
+     "id": "thu-1e42jm.x01ck7"
+    },
+    {
+     "t": "15 bananas + 15 bottle openers",
+     "id": "thu-1e42jm.1yqf7wm"
+    },
+    {
+     "t": "Drinks in bus bins — 5 bins: Truly, Downeast, Crystal Light",
+     "l": "prod",
+     "id": "thu-1e42jm.19sgwl7"
+    },
+    {
+     "t": "A/V: Justin + Adam with laptop",
+     "l": "av",
+     "id": "thu-1e42jm.1nf8dny"
+    }
+   ],
+   "id": "thu-1e42jm"
+  },
+  {
+   "t": "8:10 – 8:45 PM",
+   "k": "event",
+   "h": "Dinner",
+   "i": [
+    {
+     "t": "Bring the sheets from check-in to the back of the dining hall",
+     "id": "thu-16jr81t.ss49at"
+    }
+   ],
+   "id": "thu-16jr81t"
+  },
+  {
+   "t": "8:45 – 9:15 PM",
+   "k": "event",
+   "h": "Transition — get warmer clothes",
+   "i": [],
+   "id": "thu-12wvzzq"
+  },
+  {
+   "t": "9:15 – 10:45 PM",
+   "k": "event",
+   "h": "Evening Program: Trybal TV Nite",
+   "loc": "Beit Am",
+   "i": [
+    {
+     "t": "Run order: IMDB bunk profile → Family Feud → Price is Right → Commercials Pt 1 → Name That Tune → Commercials Pt 2 → TaskMaster",
+     "id": "thu-jqquds.9pbnnm"
+    },
+    {
+     "t": "Drinks — Production",
+     "l": "prod",
+     "id": "thu-jqquds.i0ltlh"
+    },
+    {
+     "t": "All staff present electives Rounds 1–3 + Early Risers",
+     "id": "thu-jqquds.434kax"
+    },
+    {
+     "t": "Remind everyone about Funky Hat Friday",
+     "id": "thu-jqquds.1nyom13"
+    }
+   ],
+   "id": "thu-jqquds"
+  },
+  {
+   "t": "10:30 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Afterhours Campfire build",
+   "loc": "Shawn's Lawn",
+   "i": [
+    {
+     "t": "Confirm Eisner built the fire circle",
+     "l": "eisner",
+     "id": "thu-vvyqpa.rf8c0m"
+    },
+    {
+     "t": "Campfire, benches in a circle, extra wood, lighter",
+     "id": "thu-vvyqpa.a0sj4s"
+    },
+    {
+     "t": "Table + trash",
+     "id": "thu-vvyqpa.18zwepo"
+    },
+    {
+     "t": "S'mores bar",
+     "l": "prod",
+     "id": "thu-vvyqpa.70tutq"
+    },
+    {
+     "t": "Bring drinks from Beit Am, restocking en route",
+     "l": "prod",
+     "id": "thu-vvyqpa.1eyuktr"
+    },
+    {
+     "t": "1 production staffer assigned to the fire",
+     "f": 1,
+     "id": "thu-vvyqpa.1m08t4g"
+    }
+   ],
+   "id": "thu-vvyqpa"
+  },
+  {
+   "t": "11:00 PM – till",
+   "k": "event",
+   "h": "Afterhours Campfire",
+   "loc": "Shawn's Lawn",
+   "i": [
+    {
+     "t": "Staff lead: Jeff, Micah + Josh",
+     "id": "thu-16619nk.ijaayv"
+    },
+    {
+     "t": "Bigs &amp; Littles meet",
+     "id": "thu-16619nk.bnms4d"
+    },
+    {
+     "t": "Staff meeting",
+     "id": "thu-16619nk.1y6tgec"
+    }
+   ],
+   "id": "thu-16619nk"
+  },
+  {
+   "t": "12:00 AM",
+   "k": "hard",
+   "h": "CONFIRM FIRES ARE OUT",
+   "i": [],
+   "id": "thu-1caplg5"
+  }
+ ],
+ "fri": [
+  {
+   "t": "7:00 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Early Risers build",
+   "loc": "The Dock",
+   "i": [
+    {
+     "t": "Yoga mats from Raccoon Manor",
+     "l": "prod",
+     "id": "fri-nfqpwx.au6lxo"
+    },
+    {
+     "t": "Extension cords from Raccoon Manor to the dock",
+     "l": "av",
+     "id": "fri-nfqpwx.10apdgc"
+    },
+    {
+     "t": "1 table at the dock",
+     "id": "fri-nfqpwx.xuknzd"
+    },
+    {
+     "t": "A/V — Justin's business",
+     "l": "av",
+     "id": "fri-nfqpwx.1r056aa"
+    }
+   ],
+   "id": "fri-nfqpwx"
+  },
+  {
+   "t": "7:30 – 8:15 AM",
+   "k": "event",
+   "h": "Early Risers: Yoga on the Dock",
+   "loc": "Staff lead: Ari, Yael",
+   "i": [],
+   "id": "fri-tms68w"
+  },
+  {
+   "t": "8:00 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Breakfast setup",
+   "loc": "Dining Hall",
+   "i": [
+    {
+     "t": "Cold coffee in bins at the back of the dining hall",
+     "l": "prod",
+     "id": "fri-x54rfz.wzwviv"
+    },
+    {
+     "t": "Prize Wheel &amp; Oprah Giveaways — bring from the office",
+     "f": 1,
+     "g": "Main schedule leaves the owner blank. Amy tab has Harris.",
+     "id": "fri-x54rfz.12s7dqq"
+    },
+    {
+     "t": "Connections — Samantha",
+     "id": "fri-x54rfz.8kb70p"
+    }
+   ],
+   "id": "fri-x54rfz"
+  },
+  {
+   "t": "8:30 – 9:15 AM",
+   "k": "event",
+   "h": "Breakfast",
+   "i": [
+    {
+     "t": "9:00 AM — Irene Rosenzweig arrives",
+     "id": "fri-ty24sl.w300mu"
+    }
+   ],
+   "id": "fri-ty24sl"
+  },
+  {
+   "t": "9:00 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Elective Round 1 station prep",
+   "i": [
+    {
+     "t": "Mahjong set up in BK Lounge",
+     "id": "fri-d2e2ln.1do6ir2"
+    },
+    {
+     "t": "Paper 3 picnic tables at Shawn's Lawn",
+     "id": "fri-d2e2ln.1o6q19x"
+    },
+    {
+     "t": "Yoga mats at the dock — check with Yael first",
+     "id": "fri-d2e2ln.101d2lk"
+    },
+    {
+     "t": "Speaker to Mailboxes (Bachata)",
+     "l": "av",
+     "id": "fri-d2e2ln.ruilga"
+    },
+    {
+     "t": "Speaker to Hockey Barn (Human Foosball)",
+     "l": "av",
+     "id": "fri-d2e2ln.1iq9aqx"
+    },
+    {
+     "t": "Challenge Course open",
+     "l": "eisner",
+     "id": "fri-d2e2ln.w7kcdl"
+    },
+    {
+     "t": "Pool open",
+     "l": "eisner",
+     "id": "fri-d2e2ln.162ky91"
+    }
+   ],
+   "id": "fri-d2e2ln"
+  },
+  {
+   "t": "9:15 – 9:30 AM",
+   "k": "event",
+   "h": "Transition",
+   "loc": "Info Booth™ — Jeff Fein",
+   "i": [],
+   "id": "fri-1wpb71q"
+  },
+  {
+   "t": "9:30 – 10:30 AM",
+   "k": "event",
+   "h": "Elective Round 1",
+   "loc": "10 electives",
+   "i": [
+    {
+     "t": "Block Printed Tote Bags — FART Barn — Amanda (15)",
+     "l": "aaron",
+     "m": "Listed as Aaron's FART Barn",
+     "id": "fri-xra0lg.1whxe9u"
+    },
+    {
+     "t": "Human Foosball — Hockey Pavilion — Jeff (14)",
+     "id": "fri-xra0lg.r94cq"
+    },
+    {
+     "t": "Bachata Dancing — Mailboxes — Micah (15)",
+     "id": "fri-xra0lg.p4a69o"
+    },
+    {
+     "t": "Pickleball Beginners — Tennis Courts — Josh/Amit (12)",
+     "id": "fri-xra0lg.1prs9qo"
+    },
+    {
+     "t": "Bialy Baking — Dining Hall — Liz (12)",
+     "id": "fri-xra0lg.1fqez85"
+    },
+    {
+     "t": "Persian Pickling — Shawn's Lawn — Shawn (12)",
+     "id": "fri-xra0lg.13uggmw"
+    },
+    {
+     "t": "Aerial Adventure — Challenge Course — Brooklyn (15)",
+     "id": "fri-xra0lg.idv0kg"
+    },
+    {
+     "t": "Mahjong — BK Lounge — Irene (12)",
+     "id": "fri-xra0lg.42sm4p"
+    },
+    {
+     "t": "Myofascial Release — Dock — Yael (12)",
+     "id": "fri-xra0lg.1xi35lu"
+    },
+    {
+     "t": "Model Rocketry — FART Barn Upstairs — Eitan (12)",
+     "l": "aaron",
+     "id": "fri-xra0lg.quwn9v"
+    }
+   ],
+   "id": "fri-xra0lg"
+  },
+  {
+   "t": "10:30 – 10:45 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Transition — Round 2 flip",
+   "i": [
+    {
+     "t": "Speaker stays at Hockey Barn (Human Foosball)",
+     "l": "av",
+     "id": "fri-2ew7mw.1apuerj"
+    },
+    {
+     "t": "Speaker to Tree on the Hill (Slip 'n' Slide) — BATTERY POWERED",
+     "l": "av",
+     "m": "No outlet at that location",
+     "id": "fri-2ew7mw.u1ntul"
+    },
+    {
+     "t": "Drinks to FART Barn upstairs — ask Brooklyn what she wants",
+     "l": "prod",
+     "id": "fri-2ew7mw.1j9hlm"
+    },
+    {
+     "t": "Lake open: Boating &amp; Aqua Ninja Park",
+     "l": "eisner",
+     "id": "fri-2ew7mw.oj091f"
+    },
+    {
+     "t": "Challenge Course",
+     "l": "eisner",
+     "id": "fri-2ew7mw.rl4t6v"
+    }
+   ],
+   "id": "fri-2ew7mw"
+  },
+  {
+   "t": "10:45 – 11:45 AM",
+   "k": "event",
+   "h": "Elective Round 2",
+   "i": [
+    {
+     "t": "Block Printed Tote Bags — FART Barn — Amanda (15)",
+     "l": "aaron",
+     "id": "fri-1w43zws.1whxe9u"
+    },
+    {
+     "t": "Human Foosball — Hockey Pavilion — Eitan (16)",
+     "id": "fri-1w43zws.w2ti42"
+    },
+    {
+     "t": "Slip 'n' Slide Surprise — Tree on the Hill — Josh/Jeff (14)",
+     "id": "fri-1w43zws.12amm98"
+    },
+    {
+     "t": "Bialy Baking — Dining Hall — Liz (12)",
+     "id": "fri-1w43zws.1fqez85"
+    },
+    {
+     "t": "Moroccan Preserved Lemons — Shawn's Lawn — Shawn (12)",
+     "id": "fri-1w43zws.law0r9"
+    },
+    {
+     "t": "Aerial Adventure — High Ropes — Eisner + Micah (15)",
+     "l": "eisner",
+     "id": "fri-1w43zws.14f4vro"
+    },
+    {
+     "t": "Sip 'n' Paint — FART Barn Upstairs — Brooklyn (15)",
+     "l": "aaron",
+     "m": "Champagne held back from Thursday check-in",
+     "id": "fri-1w43zws.puycsf"
+    },
+    {
+     "t": "Mahjong — BK Lounge — Irene + campers (16)",
+     "id": "fri-1w43zws.bb9d7"
+    },
+    {
+     "t": "Herbal Bath Salt — BBG — Yael (12)",
+     "id": "fri-1w43zws.1ljr802"
+    },
+    {
+     "t": "Aqua Ninja Park — Lake (15)",
+     "f": 1,
+     "g": "Lead is blank in the main schedule. Amy tab has Josh.",
+     "id": "fri-1w43zws.1qndjyj"
+    }
+   ],
+   "id": "fri-1w43zws"
+  },
+  {
+   "t": "12:00 – 1:00 PM",
+   "k": "event",
+   "h": "Lunch",
+   "i": [
+    {
+     "t": "Commonalities — staff lead",
+     "f": 1,
+     "g": "Doc reads \"Shawn? Eitan?\" — never decided.",
+     "id": "fri-1xpsiiv.3ocl1t"
+    },
+    {
+     "t": "Funky Hat Friday™",
+     "id": "fri-1xpsiiv.lskz7s"
+    },
+    {
+     "t": "Staff meeting — Shabbat &amp; Pool Party review",
+     "id": "fri-1xpsiiv.dpbp9o"
+    }
+   ],
+   "id": "fri-1xpsiiv"
+  },
+  {
+   "t": "1:00 – 1:30 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Break — Round 3 flip",
+   "i": [
+    {
+     "t": "Info Booth™ — Jeff",
+     "id": "fri-ug4kjh.rxnihu"
+    },
+    {
+     "t": "Ice to FART Barn",
+     "l": "prod",
+     "id": "fri-ug4kjh.12gx2l9"
+    },
+    {
+     "t": "Drinks to BBG — ask Brooklyn",
+     "l": "prod",
+     "id": "fri-ug4kjh.1k6crv3"
+    },
+    {
+     "t": "Speaker to Mailboxes (Salsa)",
+     "l": "av",
+     "id": "fri-ug4kjh.zaa3lo"
+    },
+    {
+     "t": "Speaker at Tree on the Hill (Slip 'n' Slide)",
+     "l": "av",
+     "id": "fri-ug4kjh.1s27c80"
+    },
+    {
+     "t": "Challenge Course",
+     "l": "eisner",
+     "id": "fri-ug4kjh.rl4t6v"
+    }
+   ],
+   "id": "fri-ug4kjh"
+  },
+  {
+   "t": "1:30 – 2:30 PM",
+   "k": "event",
+   "h": "Elective Round 3",
+   "i": [
+    {
+     "t": "Ice Dye — FART Barn — Amanda (15)",
+     "l": "aaron",
+     "id": "fri-y043hw.dqn5z1"
+    },
+    {
+     "t": "Slip 'n' Slide Surprise — Tree on the Hill — Josh/Jeff (16)",
+     "id": "fri-y043hw.3vtl8q"
+    },
+    {
+     "t": "Salsa Dancing — Mailboxes — Justin (16)",
+     "m": "Justin is also the A/V lead — check he can cover both",
+     "id": "fri-y043hw.19fcve"
+    },
+    {
+     "t": "Babka-licious Baking — Dining Hall — Liz (12)",
+     "g": "Overlaps the 2:00–4:00 pm dining hall setup for Shabbat.",
+     "id": "fri-y043hw.1yxo2uu"
+    },
+    {
+     "t": "Tequila Gedola Mixology — BBG — Brooklyn + Dror (15)",
+     "id": "fri-y043hw.1c7npbg"
+    },
+    {
+     "t": "Moroccan Preserved Lemons — Shawn's Lawn — Shawn (12)",
+     "id": "fri-y043hw.law0r9"
+    },
+    {
+     "t": "Aerial Adventure — High Ropes — Eisner + Micah (15)",
+     "l": "eisner",
+     "id": "fri-y043hw.14f4vro"
+    },
+    {
+     "t": "Dead Sea Mud Masks — FART Barn Upstairs — Maayan + Bar (12)",
+     "l": "aaron",
+     "id": "fri-y043hw.1dx6jvx"
+    },
+    {
+     "t": "Pimp My Hinge (or other) — BK Lounge — Eitan (15)",
+     "id": "fri-y043hw.c2yf8l"
+    },
+    {
+     "t": "Myofascial Release — Dock — Yael (15)",
+     "id": "fri-y043hw.1om6ewt"
+    }
+   ],
+   "id": "fri-y043hw"
+  },
+  {
+   "t": "1:45 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Pool Party build — \"Flamingle\"",
+   "loc": "⚠ Overlaps Elective Round 3 and the dining hall setup",
+   "i": [
+    {
+     "t": "Tablecloths — 2 drinks tables, 1 DJ table",
+     "id": "fri-1stu4qr.6cy7un"
+    },
+    {
+     "t": "Garlands on the pop-up tent",
+     "id": "fri-1stu4qr.1lwnj9t"
+    },
+    {
+     "t": "Half the lawn flamingos moved from BBG to the pool",
+     "id": "fri-1stu4qr.1699ql3"
+    },
+    {
+     "t": "Flamingo coozies — Josh leads with ambassadors",
+     "id": "fri-1stu4qr.bd7ok9"
+    },
+    {
+     "t": "4 snack tables by the pool",
+     "id": "fri-1stu4qr.80svqa"
+    },
+    {
+     "t": "Snacks: Vego bears (all), Beans (50), Matzah Project (all), Maine crackers",
+     "l": "prod",
+     "id": "fri-1stu4qr.3h57sv"
+    },
+    {
+     "t": "Drinks: Suncruiser, Truly, Topo Chico cans, IPAs, Crystal Light, Sinless Spirit, Dogfishhead, Down East, Athletic Brewing, Vitamin Water (2 cases)",
+     "l": "prod",
+     "id": "fri-1stu4qr.ojaqux"
+    },
+    {
+     "t": "Drinks setup / reloading crew",
+     "f": 1,
+     "id": "fri-1stu4qr.1si0j1m"
+    },
+    {
+     "t": "Shmoozers",
+     "f": 1,
+     "id": "fri-1stu4qr.opgrx9"
+    },
+    {
+     "t": "Clean-up crew",
+     "f": 1,
+     "id": "fri-1stu4qr.wuswsl"
+    }
+   ],
+   "id": "fri-1stu4qr"
+  },
+  {
+   "t": "2:00 – 4:00 PM",
+   "k": "event",
+   "h": "Dining Hall Setup",
+   "loc": "Production: Sam · the only setup window the doc actually times",
+   "i": [
+    {
+     "t": "Move uplit TRYBAL letters from the plaque barn + four blue lights",
+     "l": "prod",
+     "id": "fri-43wmg8.qhhrnz"
+    },
+    {
+     "t": "One set of ritual items at the front",
+     "l": "prod",
+     "id": "fri-43wmg8.1droh6g"
+    },
+    {
+     "t": "Unlit tea lights on the tables",
+     "l": "prod",
+     "id": "fri-43wmg8.15t9y6p"
+    },
+    {
+     "t": "Lit votive candles",
+     "l": "prod",
+     "id": "fri-43wmg8.1sojbfx"
+    },
+    {
+     "t": "Extension cord for the lights",
+     "l": "av",
+     "id": "fri-43wmg8.i1weyv"
+    }
+   ],
+   "id": "fri-43wmg8"
+  },
+  {
+   "t": "2:30 – 5:30 PM",
+   "k": "event",
+   "h": "Pool Party &amp; Free Time",
+   "loc": "Pool closes at 5:00 · Theme: Flamingle",
+   "i": [],
+   "id": "fri-leqpcs"
+  },
+  {
+   "t": "4:15 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Soirée en Blanc build",
+   "loc": "Theme: Shabbat Impressions",
+   "i": [
+    {
+     "t": "11 tables + tablecloths",
+     "id": "fri-gr3hj8.1xz3uk"
+    },
+    {
+     "t": "Signs in plastic frames",
+     "id": "fri-gr3hj8.16qh86e"
+    },
+    {
+     "t": "Confirm Eisner is doing the snack",
+     "l": "eisner",
+     "m": "Doc: \"make sure they do it\"",
+     "id": "fri-gr3hj8.ccnult"
+    },
+    {
+     "t": "Metal stamping station",
+     "id": "fri-gr3hj8.ojf5fh"
+    },
+    {
+     "t": "Letter writing + wax seal — Shawn",
+     "id": "fri-gr3hj8.1bw4wsi"
+    },
+    {
+     "t": "Cocktails: spiked pickle lemonade — Liz",
+     "m": "Ask Liz what help she needs",
+     "id": "fri-gr3hj8.fxz5r0"
+    },
+    {
+     "t": "Bartenders: ice + whatever mixers they ask for",
+     "l": "prod",
+     "id": "fri-gr3hj8.18dvmtl"
+    },
+    {
+     "t": "Bigs/Littles mugs set up — Samantha, Josh",
+     "id": "fri-gr3hj8.mqw2z4"
+    },
+    {
+     "t": "Pressure points — Yael &amp; Brooklyn",
+     "id": "fri-gr3hj8.1n0011h"
+    },
+    {
+     "t": "Night elective signup + Saturday affinity table signup",
+     "f": 1,
+     "id": "fri-gr3hj8.vf0q2c"
+    }
+   ],
+   "id": "fri-gr3hj8"
+  },
+  {
+   "t": "5:00 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Services &amp; A/V check",
+   "i": [
+    {
+     "t": "Outdoor lighting up",
+     "l": "av",
+     "m": "Outlet locations were set during pre-camp",
+     "id": "fri-ddcxz8.togazy"
+    },
+    {
+     "t": "Silent disco",
+     "l": "av",
+     "id": "fri-ddcxz8.1qgljm"
+    },
+    {
+     "t": "Speaker with mic",
+     "l": "av",
+     "id": "fri-ddcxz8.pnjq9d"
+    },
+    {
+     "t": "Justin on A/V, assist from Michael",
+     "l": "av",
+     "id": "fri-ddcxz8.m087ol"
+    },
+    {
+     "t": "Shabbat-O-Grams staged — 4 people on 2 golf carts",
+     "id": "fri-ddcxz8.16qjb7i"
+    }
+   ],
+   "id": "fri-ddcxz8"
+  },
+  {
+   "t": "5:45 – 6:15 PM",
+   "k": "event",
+   "h": "Bunk time",
+   "i": [
+    {
+     "t": "All program staff assigned to bunks",
+     "id": "fri-m1ns8u.1eivm1o"
+    },
+    {
+     "t": "Pitch the night electives",
+     "f": 1,
+     "g": "No owner listed.",
+     "id": "fri-m1ns8u.1jisodc"
+    }
+   ],
+   "id": "fri-m1ns8u"
+  },
+  {
+   "t": "6:15 – 7:00 PM",
+   "k": "event",
+   "h": "Soirée en Blanc",
+   "i": [],
+   "id": "fri-1lp960m"
+  },
+  {
+   "t": "7:10 – 7:50 PM",
+   "k": "event",
+   "h": "Shabbat Services",
+   "i": [
+    {
+     "t": "Shabbat-O-Grams run out to pillows during services",
+     "m": "4 people, 2 golf carts",
+     "id": "fri-1havh7c.1bkttls"
+    }
+   ],
+   "id": "fri-1havh7c"
+  },
+  {
+   "t": "8:00 – 9:00 PM",
+   "k": "event",
+   "h": "Shabbat Dinner",
+   "i": [
+    {
+     "t": "Light the votive candles",
+     "l": "prod",
+     "id": "fri-6vztsx.ll2rvj"
+    },
+    {
+     "t": "Candle lighting — Israelis",
+     "id": "fri-6vztsx.bxp64k"
+    },
+    {
+     "t": "Alumni ceremony — bring swag from the office",
+     "m": "Assist from Adam and Josh",
+     "id": "fri-6vztsx.6et5zc"
+    }
+   ],
+   "id": "fri-6vztsx"
+  },
+  {
+   "t": "9:00 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Dinner strike + Night Electives build",
+   "loc": "Manor House Lawn &amp; satellites",
+   "i": [
+    {
+     "t": "Letters and lights back to the plaque barn",
+     "l": "prod",
+     "id": "fri-b4ytis.vle622"
+    },
+    {
+     "t": "Everyone not running a night elective is on clean-up",
+     "id": "fri-b4ytis.13eyp9o"
+    },
+    {
+     "t": "Campfire, benches in a circle, extra wood, lighter, s'mores — Manor House Lawn",
+     "id": "fri-b4ytis.cmup79"
+    },
+    {
+     "t": "4 tables for bartender / s'mores snacks",
+     "l": "prod",
+     "id": "fri-b4ytis.1strzek"
+    },
+    {
+     "t": "4 mics if possible",
+     "l": "av",
+     "id": "fri-b4ytis.1nruhpn"
+    },
+    {
+     "t": "Patio lights on at the Manor House — ask Pele",
+     "id": "fri-b4ytis.1nmzkla"
+    },
+    {
+     "t": "2 tables, papered, for Dror's mixology",
+     "l": "prod",
+     "id": "fri-b4ytis.4r57i9"
+    },
+    {
+     "t": "Wireless speaker with mic, yoga mats, Eddie Bauer picnic blankets → soccer field",
+     "l": "av",
+     "id": "fri-b4ytis.1nal3zf"
+    },
+    {
+     "t": "Glow bracelets for the ghost hike",
+     "id": "fri-b4ytis.i4jj5p"
+    },
+    {
+     "t": "Glow sticks for the night zipline",
+     "id": "fri-b4ytis.19xq0xi"
+    }
+   ],
+   "id": "fri-b4ytis"
+  },
+  {
+   "t": "9:00 – 9:30 PM",
+   "k": "event",
+   "h": "Transition &amp; Change",
+   "i": [],
+   "id": "fri-122bwz2"
+  },
+  {
+   "t": "9:30 – 11:00 PM",
+   "k": "event",
+   "h": "Night Electives",
+   "loc": "Gather at BBG at 9:30, then head to locations",
+   "i": [
+    {
+     "t": "Star party @ soccer field — Rick",
+     "id": "fri-1tfnf75.1eeok8v"
+    },
+    {
+     "t": "Ghost hike — Jeff, Yael (14 people)",
+     "id": "fri-1tfnf75.1icu01k"
+    },
+    {
+     "t": "Tricked Out S'mores @ Manor House Lawn — Liz",
+     "m": "Liz's own supplies",
+     "id": "fri-1tfnf75.1rf8cld"
+    },
+    {
+     "t": "Israeli Mixology @ Manor House — Dror",
+     "m": "Dror's own ingredients",
+     "id": "fri-1tfnf75.1dmnswy"
+    },
+    {
+     "t": "Night zipline",
+     "f": 1,
+     "id": "fri-1tfnf75.1e9ves0"
+    },
+    {
+     "t": "Elective presentations, Rounds 4–5",
+     "id": "fri-1tfnf75.1dmf6bq"
+    },
+    {
+     "t": "Staff meeting",
+     "id": "fri-1tfnf75.1y6tgec"
+    }
+   ],
+   "id": "fri-1tfnf75"
+  },
+  {
+   "t": "11:00 PM – 12:00 AM",
+   "k": "event",
+   "h": "After Hours Campfire",
+   "i": [
+    {
+     "t": "Staff assignments",
+     "f": 1,
+     "g": "Doc says \"Assignments TBD\".",
+     "id": "fri-i8p7j0.c73vv"
+    },
+    {
+     "t": "Josh: tap Color War captains",
+     "id": "fri-i8p7j0.1odypgu"
+    }
+   ],
+   "id": "fri-i8p7j0"
+  },
+  {
+   "t": "12:00 AM",
+   "k": "hard",
+   "h": "CONFIRM FIRES ARE OUT",
+   "i": [],
+   "id": "fri-1caplg5"
+  },
+  {
+   "t": "Overnight",
+   "p": 1,
+   "k": "prep",
+   "h": "Evening homework",
+   "loc": "Or pre-camp if there's time",
+   "i": [
+    {
+     "t": "Elective sheets",
+     "id": "fri-2ozbv3.lk7n7y"
+    },
+    {
+     "t": "Prize notecards",
+     "id": "fri-2ozbv3.3dsuj8"
+    },
+    {
+     "t": "Print Connections",
+     "id": "fri-2ozbv3.1ri9dmh"
+    },
+    {
+     "t": "Trybal Tribune",
+     "id": "fri-2ozbv3.1h2rmic"
+    }
+   ],
+   "id": "fri-2ozbv3"
+  }
+ ],
+ "sat": [
+  {
+   "t": "7:00 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Early Risers build",
+   "loc": "The Dock",
+   "i": [
+    {
+     "t": "Speaker + DJ setup for Israeli Zumba",
+     "l": "av",
+     "m": "Ari is DJing",
+     "id": "sat-nfqpwx.1euj1vn"
+    },
+    {
+     "t": "Yoga mats from Raccoon Manor",
+     "l": "prod",
+     "id": "sat-nfqpwx.au6lxo"
+    },
+    {
+     "t": "7:30 AM — Sasha Bogdanowitsch arrives to set up the sound bath",
+     "m": "Runs in Rounds 4 and 5 at Manor House Lawn",
+     "id": "sat-nfqpwx.1ldsynm"
+    }
+   ],
+   "id": "sat-nfqpwx"
+  },
+  {
+   "t": "7:30 – 8:15 AM",
+   "k": "event",
+   "h": "Early Risers: Israeli Zumba",
+   "loc": "The Dock · Roni (and Yael), Ari to DJ",
+   "i": [],
+   "id": "sat-e2kwwh"
+  },
+  {
+   "t": "8:00 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Breakfast setup",
+   "loc": "Dining Hall",
+   "i": [
+    {
+     "t": "Cold coffee in bins at the back of the dining hall",
+     "l": "prod",
+     "id": "sat-x54rfz.wzwviv"
+    },
+    {
+     "t": "Set up the fake Color War break",
+     "g": "The doc names no owner or props for the fake break — decide who runs it and what it needs.",
+     "f": 1,
+     "id": "sat-x54rfz.18xcsr2"
+    },
+    {
+     "t": "8:30 AM — Jeff from MA Sports arrives for bubble soccer",
+     "id": "sat-x54rfz.1ja88ka"
+    },
+    {
+     "t": "9:00 AM — Irene Rosenzweig arrives for pickleball",
+     "id": "sat-x54rfz.1kps9cg"
+    }
+   ],
+   "id": "sat-x54rfz"
+  },
+  {
+   "t": "8:30 – 9:15 AM",
+   "k": "event",
+   "h": "Breakfast",
+   "loc": "Fake Color War break",
+   "i": [],
+   "id": "sat-ty24sl"
+  },
+  {
+   "t": "9:00 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Elective Round 4 station prep",
+   "i": [
+    {
+     "t": "Archery open",
+     "l": "eisner",
+     "id": "sat-7b2dwy.1y243mn"
+    },
+    {
+     "t": "Zipline open",
+     "l": "eisner",
+     "id": "sat-7b2dwy.1b7iexm"
+    },
+    {
+     "t": "Sound bath set at Manor House Lawn",
+     "m": "Sasha's own setup — confirm rain plan, Amy tab lists Beit Am as the alternative",
+     "id": "sat-7b2dwy.1g5wevv"
+    },
+    {
+     "t": "Bubble soccer inflated at the soccer field",
+     "m": "Jeff from MA Sports arrives 8:30",
+     "id": "sat-7b2dwy.1r1806e"
+    },
+    {
+     "t": "Wine stoppers materials to FART Barn Upstairs",
+     "l": "aaron",
+     "id": "sat-7b2dwy.1mj6vom"
+    },
+    {
+     "t": "Nature hike meeting point at the Mailboxes",
+     "id": "sat-7b2dwy.3xrpic"
+    }
+   ],
+   "id": "sat-7b2dwy"
+  },
+  {
+   "t": "9:15 – 9:30 AM",
+   "k": "event",
+   "h": "Transition",
+   "loc": "Info Booth™ — Jeff",
+   "i": [],
+   "id": "sat-1wpb71q"
+  },
+  {
+   "t": "9:30 – 10:30 AM",
+   "k": "event",
+   "h": "Elective Round 4",
+   "loc": "10 electives",
+   "i": [
+    {
+     "t": "Hand Sculpted Wine Stoppers Party — FART Barn Upstairs — Amanda (15)",
+     "l": "aaron",
+     "id": "sat-wxb7ij.u83t5j"
+    },
+    {
+     "t": "Pickleball — Tennis Courts — Irene/Amit (16)",
+     "id": "sat-wxb7ij.16lp134"
+    },
+    {
+     "t": "Bubble Soccer Party — Soccer Field — Eitan (12)",
+     "id": "sat-wxb7ij.iq20gy"
+    },
+    {
+     "t": "Knish Delish — Dining Hall — Liz (12)",
+     "id": "sat-wxb7ij.1wtcmey"
+    },
+    {
+     "t": "Infused Butter Shake Weights — Shawn's Lawn — Shawn (12)",
+     "id": "sat-wxb7ij.1r732m2"
+    },
+    {
+     "t": "Archery — High Ropes — Eisner + Bar (15)",
+     "l": "eisner",
+     "id": "sat-wxb7ij.100ofa3"
+    },
+    {
+     "t": "Zipline Shootout — High Ropes — Eisner + Yael",
+     "l": "eisner",
+     "g": "Cap is blank in the schedule.",
+     "id": "sat-wxb7ij.u0bk00"
+    },
+    {
+     "t": "Amulet Making — BBG — Brooklyn (15)",
+     "id": "sat-wxb7ij.183mana"
+    },
+    {
+     "t": "Soundbath Meditation — Manor House Lawn — Sasha (15)",
+     "id": "sat-wxb7ij.79owev"
+    },
+    {
+     "t": "Nature Hike — meet at Mailboxes — Jeff (15)",
+     "id": "sat-wxb7ij.1oqu0q3"
+    }
+   ],
+   "id": "sat-wxb7ij"
+  },
+  {
+   "t": "10:30 – 10:45 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Transition — Round 5 flip",
+   "i": [
+    {
+     "t": "Lake open for the Lake Party",
+     "l": "eisner",
+     "id": "sat-q9iv27.10oei3l"
+    },
+    {
+     "t": "Archery and Zipline stay open",
+     "l": "eisner",
+     "id": "sat-q9iv27.6cd4wm"
+    },
+    {
+     "t": "Swipe painting materials to FART Barn, embroidery upstairs",
+     "l": "aaron",
+     "id": "sat-q9iv27.ksm71"
+    }
+   ],
+   "id": "sat-q9iv27"
+  },
+  {
+   "t": "10:45 – 11:45 AM",
+   "k": "event",
+   "h": "Elective Round 5",
+   "i": [
+    {
+     "t": "Swipe Painting — FART Barn — Amanda (15)",
+     "l": "aaron",
+     "id": "sat-1vu4e7t.1n68tpg"
+    },
+    {
+     "t": "Cake Sprinkle Embroidery — FART Barn Upstairs — Yael (15)",
+     "l": "aaron",
+     "id": "sat-1vu4e7t.1c8lx46"
+    },
+    {
+     "t": "Pickleball Advanced — Tennis Courts — Irene/Amit (16)",
+     "id": "sat-1vu4e7t.tm2b5y"
+    },
+    {
+     "t": "Bubble Soccer Party — Soccer Field — Jeff Fein (15)",
+     "id": "sat-1vu4e7t.4xy1mx"
+    },
+    {
+     "t": "Knish Delish — Dining Hall — Liz (12)",
+     "id": "sat-1vu4e7t.1wtcmey"
+    },
+    {
+     "t": "Archery — High Ropes — Eisner + Shawn (15)",
+     "l": "eisner",
+     "id": "sat-1vu4e7t.15n8afx"
+    },
+    {
+     "t": "Zipline Shootout — High Ropes — Eisner + Brooklyn (15)",
+     "l": "eisner",
+     "id": "sat-1vu4e7t.58cdhq"
+    },
+    {
+     "t": "Soundbath Meditation — Manor House Lawn — Sasha (15)",
+     "id": "sat-1vu4e7t.79owev"
+    },
+    {
+     "t": "Model Rocketry: To the Moon! — BK Lounge — Eitan (12)",
+     "id": "sat-1vu4e7t.ag320p"
+    },
+    {
+     "t": "Lake Party — Lake — Bar / Micah (15)",
+     "id": "sat-1vu4e7t.1u8f50c"
+    }
+   ],
+   "id": "sat-1vu4e7t"
+  },
+  {
+   "t": "11:45 – 12:15 PM",
+   "k": "event",
+   "h": "Change for Color War",
+   "i": [],
+   "id": "sat-1gjlyqr"
+  },
+  {
+   "t": "11:50 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Color War break setup",
+   "i": [
+    {
+     "t": "Air Dancers out and powered",
+     "g": "No power source or location named in the schedule.",
+     "id": "sat-1os7cyf.1j9znry"
+    },
+    {
+     "t": "Color War supplies pulled from the shelf",
+     "m": "Josh owns Color War supplies per the post-session list",
+     "id": "sat-1os7cyf.cmyqg4"
+    }
+   ],
+   "id": "sat-1os7cyf"
+  },
+  {
+   "t": "12:15 – 12:45 PM",
+   "k": "event",
+   "h": "Color War Break",
+   "loc": "Program Lead: Josh",
+   "i": [
+    {
+     "t": "Air Dancers",
+     "id": "sat-1i25cfw.4fjnt7"
+    }
+   ],
+   "id": "sat-1i25cfw"
+  },
+  {
+   "t": "12:45 – 1:30 PM",
+   "k": "event",
+   "h": "Lunch",
+   "i": [
+    {
+     "t": "Colored Gatorade in pitchers or coolers",
+     "l": "prod",
+     "id": "sat-tq6g9.1sh9vxv"
+    },
+    {
+     "t": "Staff meeting",
+     "id": "sat-tq6g9.1y6tgec"
+    }
+   ],
+   "id": "sat-tq6g9"
+  },
+  {
+   "t": "1:30 – 5:00 PM",
+   "k": "event",
+   "h": "Color War",
+   "loc": "Staff captains — tapped at Friday's after-hours campfire",
+   "i": [
+    {
+     "t": "Golf cart ice cream truck",
+     "id": "sat-x4lbif.1bmx4cz"
+    },
+    {
+     "t": "Drinks: the rest of the vitamin water",
+     "l": "prod",
+     "id": "sat-x4lbif.1neksfy"
+    }
+   ],
+   "id": "sat-x4lbif"
+  },
+  {
+   "t": "5:00 – 7:30 PM",
+   "k": "event",
+   "h": "Free Time & Shower Hour",
+   "loc": "Come dressed in party outfits",
+   "i": [],
+   "id": "sat-1qw5g9n"
+  },
+  {
+   "t": "7:00 PM",
+   "k": "event",
+   "h": "Staff Meeting",
+   "i": [],
+   "id": "sat-ui1e84"
+  },
+  {
+   "t": "7:30 – 8:30 PM",
+   "k": "event",
+   "h": "Dinner",
+   "i": [],
+   "id": "sat-ovxa56"
+  },
+  {
+   "t": "8:30 – 9:00 PM",
+   "k": "event",
+   "h": "Friend Dates",
+   "loc": "Groups of 3",
+   "i": [
+    {
+     "t": "Mahjong tiles to sort the groups",
+     "g": "Doc has this as a question — \"mahjong tiles for groups?\" — not a decision.",
+     "id": "sat-11ransk.1nnoi1o"
+    }
+   ],
+   "id": "sat-11ransk"
+  },
+  {
+   "t": "8:45 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Dance Party build",
+   "loc": "Theme: Banned from the Country Club",
+   "i": [
+    {
+     "t": "4 bartender tables",
+     "l": "prod",
+     "id": "sat-5go420.1fqyvit"
+    },
+    {
+     "t": "DJ setup — Ari, Justin",
+     "l": "av",
+     "id": "sat-5go420.1mwfjl1"
+    },
+    {
+     "t": "3D photobooth — Adam, Samantha",
+     "id": "sat-5go420.v0hex6"
+    },
+    {
+     "t": "Golf simulator — Eitan, Sam",
+     "id": "sat-5go420.u663gp"
+    },
+    {
+     "t": "2 chairs for the dance",
+     "m": "Lifting Hayley, and Jamie's birthday",
+     "id": "sat-5go420.1it9x7q"
+    },
+    {
+     "t": "Campfire and benches in a smaller circle near Russel Daum (crossroads) — lit at 10:00 pm",
+     "id": "sat-5go420.sdqj9s"
+    },
+    {
+     "t": "Bartenders: Leah, Elliot, Rose",
+     "l": "prod",
+     "id": "sat-5go420.10nfddr"
+    },
+    {
+     "t": "Snacks & restocking beverages: Phillipe, Alan, Alfredo, Elliot, Asaf, Bar",
+     "l": "prod",
+     "id": "sat-5go420.1mcqrfc"
+    }
+   ],
+   "id": "sat-5go420"
+  },
+  {
+   "t": "9:00 – 9:30 PM",
+   "k": "event",
+   "h": "Havdalah",
+   "loc": "BBG",
+   "i": [],
+   "id": "sat-1fxbg31"
+  },
+  {
+   "t": "9:30 PM – 12:00 AM",
+   "k": "event",
+   "h": "Dance Party",
+   "loc": "Theme: Banned from the Country Club",
+   "i": [
+    {
+     "t": "Bartenders 9:30–12:00 (4 tables)",
+     "l": "prod",
+     "id": "sat-1f63mx3.12zs65h"
+    },
+    {
+     "t": "Dance floor: Ari, Josh, Harris, Rose, Jeff, Brooklyn, Aaron, Yael",
+     "l": "aaron",
+     "id": "sat-1f63mx3.3g8j41"
+    },
+    {
+     "t": "Campfire s'mores from 10:00 pm — Micah, Elia",
+     "id": "sat-1f63mx3.1i9xpah"
+    }
+   ],
+   "id": "sat-1f63mx3"
+  },
+  {
+   "t": "12:30 – 2:00 AM",
+   "k": "event",
+   "h": "After Hours Campfire + Late Night Karaoke",
+   "i": [
+    {
+     "t": "Karaoke 12:00–2:00 — Samantha, Brooklyn, Jeff, Josh, Micah, Production",
+     "l": "prod",
+     "id": "sat-o5flnx.1xoqv6i"
+    },
+    {
+     "t": "Eisner: Cereal Bar at 12:00 am",
+     "l": "eisner",
+     "m": "Confirm Eisner is doing it",
+     "id": "sat-o5flnx.vjx5hq"
+    }
+   ],
+   "id": "sat-o5flnx"
+  },
+  {
+   "t": "1:45 AM",
+   "k": "event",
+   "h": "Late Night Clean-Up Crew",
+   "loc": "Elliot, Philippe, Sam, Alan, Alfredo",
+   "i": [],
+   "id": "sat-pziqgb"
+  },
+  {
+   "t": "2:00 AM",
+   "k": "hard",
+   "h": "CONFIRM FIRES ARE OUT",
+   "i": [],
+   "id": "sat-1i4os1m"
+  }
+ ],
+ "sun": [
+  {
+   "t": "8:15 AM",
+   "k": "event",
+   "h": "Staff Meeting",
+   "i": [],
+   "id": "sun-1h9urcq"
+  },
+  {
+   "t": "8:30 – 9:00 AM",
+   "k": "event",
+   "h": "Rise 'n' Shine",
+   "i": [
+    {
+     "t": "Staff check-in",
+     "id": "sun-116zmdu.ykvejb"
+    },
+    {
+     "t": "Pack",
+     "id": "sun-116zmdu.1k3pds0"
+    },
+    {
+     "t": "Lost and Found",
+     "id": "sun-116zmdu.1h4u8sa"
+    },
+    {
+     "t": "Clean bunks",
+     "id": "sun-116zmdu.1p9uwcp"
+    }
+   ],
+   "id": "sun-116zmdu"
+  },
+  {
+   "t": "8:45 AM",
+   "p": 1,
+   "k": "prep",
+   "h": "Brunch & slideshow setup",
+   "loc": "Dining Hall",
+   "i": [
+    {
+     "t": "Paper Plate Awards up on the wall — Rose, Yael",
+     "id": "sun-2nqvtd.6ncmgg"
+    },
+    {
+     "t": "Slideshow running",
+     "l": "av",
+     "g": "No A/V owner named for the slideshow — confirm with Justin.",
+     "id": "sun-2nqvtd.nsdkrc"
+    }
+   ],
+   "id": "sun-2nqvtd"
+  },
+  {
+   "t": "9:00 – 10:00 AM",
+   "k": "event",
+   "h": "Brunch & Slideshow",
+   "i": [],
+   "id": "sun-6yrw6"
+  },
+  {
+   "t": "10:00 – 10:15 AM",
+   "k": "event",
+   "h": "Transition to Closing Circle",
+   "i": [
+    {
+     "t": "Mailbox buddy reveal",
+     "id": "sun-iax7wf.msf8o8"
+    }
+   ],
+   "id": "sun-iax7wf"
+  },
+  {
+   "t": "10:15 – 12:00 PM",
+   "k": "event",
+   "h": "Closing Ceremony & Friendship Circle",
+   "i": [
+    {
+     "t": "Bunk time",
+     "id": "sun-el6ki6.fg8ca8"
+    },
+    {
+     "t": "Magnetic PPAs",
+     "id": "sun-el6ki6.7pktp5"
+    },
+    {
+     "t": "Tap someone who",
+     "id": "sun-el6ki6.lg61ty"
+    },
+    {
+     "t": "Friendship bracelets",
+     "id": "sun-el6ki6.1gvmife"
+    },
+    {
+     "t": "Sunscreen closing",
+     "id": "sun-el6ki6.nt3cem"
+    }
+   ],
+   "id": "sun-el6ki6"
+  },
+  {
+   "t": "12:00 PM",
+   "k": "event",
+   "h": "Departure",
+   "i": [
+    {
+     "t": "Bagged lunches",
+     "id": "sun-13fs2d7.r7ejdv"
+    }
+   ],
+   "id": "sun-13fs2d7"
+  },
+  {
+   "t": "12:00 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Post-camp: sweeps & pickup",
+   "i": [
+    {
+     "t": "Bunk sweeps & common area sweeps — Phillipe, Harris, Jeff",
+     "m": "Take anything left behind, organise linens, throw away trash",
+     "id": "sun-1fknu12.gp3kro"
+    },
+    {
+     "t": "Bring bunk signs inside — flag any that need redoing",
+     "id": "sun-1fknu12.iny3li"
+    },
+    {
+     "t": "Drive around camp to pick up supplies — Asaf, Elliot, Sam",
+     "id": "sun-1fknu12.1pyeyfq"
+    },
+    {
+     "t": "All lost & found to the Israeli flag",
+     "id": "sun-1fknu12.1sf2ocd"
+    },
+    {
+     "t": "Anything perishable at BBG into BK Lounge — Leah, Elia, Justin",
+     "id": "sun-1fknu12.eo9imv"
+    },
+    {
+     "t": "Reset dining hall — 6 ft tables to the sides, pop-up tables to the side — Alan, Alfredo",
+     "l": "prod",
+     "id": "sun-1fknu12.1xqq1bp"
+    },
+    {
+     "t": "Collect walkies from all staff before they leave",
+     "f": 1,
+     "id": "sun-1fknu12.1h9oc4a"
+    }
+   ],
+   "id": "sun-1fknu12"
+  },
+  {
+   "t": "12:30 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Post-camp: office & A/V reset",
+   "i": [
+    {
+     "t": "Organise office — Samantha, Adam",
+     "m": "Consolidate supplies, move out empty boxes",
+     "id": "sun-bhc9dv.11m900d"
+    },
+    {
+     "t": "Markers & mailbox — Chelsea, Rose, Sam",
+     "m": "Fat sharpies in one ziploc, thin sharpies in another, Trybal pens back in their box, scissors together",
+     "id": "sun-bhc9dv.1umttzj"
+    },
+    {
+     "t": "A/V: Justin & Ari sync on rental supplies",
+     "l": "av",
+     "id": "sun-bhc9dv.rxgtoz"
+    },
+    {
+     "t": "Reset A/V, silent disco and parachute for Thursday's opening setup",
+     "l": "av",
+     "id": "sun-bhc9dv.1j78uj1"
+    },
+    {
+     "t": "Headset boxes to BK Lounge",
+     "l": "av",
+     "id": "sun-bhc9dv.ugklrm"
+    },
+    {
+     "t": "Silent disco headsets reset on 3 tables + disco supplies (ribbon dancers, kisses, bubbles, signs)",
+     "l": "av",
+     "id": "sun-bhc9dv.1ezt8pt"
+    },
+    {
+     "t": "Color War — collect, inventory and shelve all supplies — Josh",
+     "id": "sun-bhc9dv.p9g7bm"
+    },
+    {
+     "t": "All staff: program supplies back on their respective tables",
+     "id": "sun-bhc9dv.1rie3jm"
+    },
+    {
+     "t": "Shabbat — Adam ordering letters and supplies",
+     "id": "sun-bhc9dv.1exvdzk"
+    },
+    {
+     "t": "Clean, inventory and organise the mailboxes",
+     "f": 1,
+     "id": "sun-bhc9dv.1f1fvyq"
+    }
+   ],
+   "id": "sun-bhc9dv"
+  },
+  {
+   "t": "1:00 PM",
+   "p": 1,
+   "k": "prep",
+   "h": "Post-camp: inventory & reorders",
+   "loc": "Aaron is named on both lists",
+   "i": [
+    {
+     "t": "Inventory current supplies — Rose, Brooklyn, Yael, Eitan, Aaron",
+     "l": "aaron",
+     "m": "Note what's left, what you used from what you ordered, and what came from Trybal inventory",
+     "id": "sun-7epxzl.x0to3z"
+    },
+    {
+     "t": "Reorders — Aaron: Soirée & Arts/Crafts",
+     "l": "aaron",
+     "id": "sun-7epxzl.88332f"
+    },
+    {
+     "t": "Reorders — Eitan",
+     "id": "sun-7epxzl.xrz1i0"
+    },
+    {
+     "t": "Reorders — Yael",
+     "id": "sun-7epxzl.na4uc8"
+    },
+    {
+     "t": "Inventory mixers, update the Beverage Consumption Doc — Rose, Samantha",
+     "l": "prod",
+     "id": "sun-7epxzl.1phby4p"
+    }
+   ],
+   "id": "sun-7epxzl"
+  }
+ ]
+};
+const OLD_ITEM={"thu-0-0":"thu-1x69haq.1tgy0k3","thu-0-1":"thu-1x69haq.127j82z","thu-0-2":"thu-1x69haq.zuxa6i","thu-0-3":"thu-1x69haq.b29cpq","thu-0-4":"thu-1x69haq.lk7n7y","thu-0-5":"thu-1x69haq.3dsuj8","thu-0-6":"thu-1x69haq.7g77pd","thu-0-7":"thu-1x69haq.6sybgc","thu-1-0":"thu-2hdh7t.1i13w9m","thu-1-1":"thu-2hdh7t.160xf0d","thu-1-2":"thu-2hdh7t.1kyl9cp","thu-1-3":"thu-2hdh7t.1pa2fyu","thu-1-4":"thu-2hdh7t.1t6u2h3","thu-1-5":"thu-2hdh7t.1btvbbx","thu-1-6":"thu-2hdh7t.kcxqia","thu-1-7":"thu-2hdh7t.nppa6s","thu-1-8":"thu-2hdh7t.uuixz7","thu-1-9":"thu-2hdh7t.d6sdqs","thu-2-0":"thu-yxrhck.z2b5rr","thu-2-1":"thu-yxrhck.dyffic","thu-2-2":"thu-yxrhck.1dm9agd","thu-2-3":"thu-yxrhck.1d6orrs","thu-2-4":"thu-yxrhck.1ccda7p","thu-2-5":"thu-yxrhck.196uyow","thu-2-6":"thu-yxrhck.nxk58t","thu-3-0":"thu-b8i7b4.1bg1b21","thu-3-1":"thu-b8i7b4.1vkc1ll","thu-3-2":"thu-b8i7b4.12nlnjt","thu-4-0":"thu-1xf4n0j.6oo1r7","thu-4-1":"thu-1xf4n0j.7hnazi","thu-5-0":"thu-ftiicq.u3il0i","thu-5-1":"thu-ftiicq.168mg7i","thu-5-2":"thu-ftiicq.1bbry7k","thu-7-0":"thu-1t3zrrs.125m20s","thu-7-1":"thu-1t3zrrs.1w74fsp","thu-7-2":"thu-1t3zrrs.3qjzoq","thu-7-3":"thu-1t3zrrs.101q4pa","thu-7-4":"thu-1t3zrrs.teyn4g","thu-9-0":"thu-oi354w.1415hkj","thu-9-1":"thu-oi354w.1fnc8fq","thu-9-2":"thu-oi354w.r1946q","thu-10-0":"thu-1e42jm.1ppzwvr","thu-10-1":"thu-1e42jm.mdmxsq","thu-10-2":"thu-1e42jm.1smw6xf","thu-10-3":"thu-1e42jm.6hl3oo","thu-10-4":"thu-1e42jm.qbn3p7","thu-10-5":"thu-1e42jm.1bi5xmv","thu-10-6":"thu-1e42jm.x01ck7","thu-10-7":"thu-1e42jm.1yqf7wm","thu-10-8":"thu-1e42jm.19sgwl7","thu-10-9":"thu-1e42jm.1nf8dny","thu-11-0":"thu-16jr81t.ss49at","thu-13-0":"thu-jqquds.9pbnnm","thu-13-1":"thu-jqquds.i0ltlh","thu-13-2":"thu-jqquds.434kax","thu-13-3":"thu-jqquds.1nyom13","thu-14-0":"thu-vvyqpa.rf8c0m","thu-14-1":"thu-vvyqpa.a0sj4s","thu-14-2":"thu-vvyqpa.18zwepo","thu-14-3":"thu-vvyqpa.70tutq","thu-14-4":"thu-vvyqpa.1eyuktr","thu-14-5":"thu-vvyqpa.1m08t4g","thu-15-0":"thu-16619nk.ijaayv","thu-15-1":"thu-16619nk.bnms4d","thu-15-2":"thu-16619nk.1y6tgec","fri-0-0":"fri-nfqpwx.au6lxo","fri-0-1":"fri-nfqpwx.10apdgc","fri-0-2":"fri-nfqpwx.xuknzd","fri-0-3":"fri-nfqpwx.1r056aa","fri-2-0":"fri-x54rfz.wzwviv","fri-2-1":"fri-x54rfz.12s7dqq","fri-2-2":"fri-x54rfz.8kb70p","fri-3-0":"fri-ty24sl.w300mu","fri-4-0":"fri-d2e2ln.1do6ir2","fri-4-1":"fri-d2e2ln.1o6q19x","fri-4-2":"fri-d2e2ln.101d2lk","fri-4-3":"fri-d2e2ln.ruilga","fri-4-4":"fri-d2e2ln.1iq9aqx","fri-4-5":"fri-d2e2ln.w7kcdl","fri-4-6":"fri-d2e2ln.162ky91","fri-6-0":"fri-xra0lg.1whxe9u","fri-6-1":"fri-xra0lg.r94cq","fri-6-2":"fri-xra0lg.p4a69o","fri-6-3":"fri-xra0lg.1prs9qo","fri-6-4":"fri-xra0lg.1fqez85","fri-6-5":"fri-xra0lg.13uggmw","fri-6-6":"fri-xra0lg.idv0kg","fri-6-7":"fri-xra0lg.42sm4p","fri-6-8":"fri-xra0lg.1xi35lu","fri-6-9":"fri-xra0lg.quwn9v","fri-7-0":"fri-2ew7mw.1apuerj","fri-7-1":"fri-2ew7mw.u1ntul","fri-7-2":"fri-2ew7mw.1j9hlm","fri-7-3":"fri-2ew7mw.oj091f","fri-7-4":"fri-2ew7mw.rl4t6v","fri-8-0":"fri-1w43zws.1whxe9u","fri-8-1":"fri-1w43zws.w2ti42","fri-8-2":"fri-1w43zws.12amm98","fri-8-3":"fri-1w43zws.1fqez85","fri-8-4":"fri-1w43zws.law0r9","fri-8-5":"fri-1w43zws.14f4vro","fri-8-6":"fri-1w43zws.puycsf","fri-8-7":"fri-1w43zws.bb9d7","fri-8-8":"fri-1w43zws.1ljr802","fri-8-9":"fri-1w43zws.1qndjyj","fri-9-0":"fri-1xpsiiv.3ocl1t","fri-9-1":"fri-1xpsiiv.lskz7s","fri-9-2":"fri-1xpsiiv.dpbp9o","fri-10-0":"fri-ug4kjh.rxnihu","fri-10-1":"fri-ug4kjh.12gx2l9","fri-10-2":"fri-ug4kjh.1k6crv3","fri-10-3":"fri-ug4kjh.zaa3lo","fri-10-4":"fri-ug4kjh.1s27c80","fri-10-5":"fri-ug4kjh.rl4t6v","fri-11-0":"fri-y043hw.dqn5z1","fri-11-1":"fri-y043hw.3vtl8q","fri-11-2":"fri-y043hw.19fcve","fri-11-3":"fri-y043hw.1yxo2uu","fri-11-4":"fri-y043hw.1c7npbg","fri-11-5":"fri-y043hw.law0r9","fri-11-6":"fri-y043hw.14f4vro","fri-11-7":"fri-y043hw.1dx6jvx","fri-11-8":"fri-y043hw.c2yf8l","fri-11-9":"fri-y043hw.1om6ewt","fri-12-0":"fri-1stu4qr.6cy7un","fri-12-1":"fri-1stu4qr.1lwnj9t","fri-12-2":"fri-1stu4qr.1699ql3","fri-12-3":"fri-1stu4qr.bd7ok9","fri-12-4":"fri-1stu4qr.80svqa","fri-12-5":"fri-1stu4qr.3h57sv","fri-12-6":"fri-1stu4qr.ojaqux","fri-12-7":"fri-1stu4qr.1si0j1m","fri-12-8":"fri-1stu4qr.opgrx9","fri-12-9":"fri-1stu4qr.wuswsl","fri-13-0":"fri-43wmg8.qhhrnz","fri-13-1":"fri-43wmg8.1droh6g","fri-13-2":"fri-43wmg8.15t9y6p","fri-13-3":"fri-43wmg8.1sojbfx","fri-13-4":"fri-43wmg8.i1weyv","fri-15-0":"fri-gr3hj8.1xz3uk","fri-15-1":"fri-gr3hj8.16qh86e","fri-15-2":"fri-gr3hj8.ccnult","fri-15-3":"fri-gr3hj8.ojf5fh","fri-15-4":"fri-gr3hj8.1bw4wsi","fri-15-5":"fri-gr3hj8.fxz5r0","fri-15-6":"fri-gr3hj8.18dvmtl","fri-15-7":"fri-gr3hj8.mqw2z4","fri-15-8":"fri-gr3hj8.1n0011h","fri-15-9":"fri-gr3hj8.vf0q2c","fri-16-0":"fri-ddcxz8.togazy","fri-16-1":"fri-ddcxz8.1qgljm","fri-16-2":"fri-ddcxz8.pnjq9d","fri-16-3":"fri-ddcxz8.m087ol","fri-16-4":"fri-ddcxz8.16qjb7i","fri-17-0":"fri-m1ns8u.1eivm1o","fri-17-1":"fri-m1ns8u.1jisodc","fri-19-0":"fri-1havh7c.1bkttls","fri-20-0":"fri-6vztsx.ll2rvj","fri-20-1":"fri-6vztsx.bxp64k","fri-20-2":"fri-6vztsx.6et5zc","fri-21-0":"fri-b4ytis.vle622","fri-21-1":"fri-b4ytis.13eyp9o","fri-21-2":"fri-b4ytis.cmup79","fri-21-3":"fri-b4ytis.1strzek","fri-21-4":"fri-b4ytis.1nruhpn","fri-21-5":"fri-b4ytis.1nmzkla","fri-21-6":"fri-b4ytis.4r57i9","fri-21-7":"fri-b4ytis.1nal3zf","fri-21-8":"fri-b4ytis.i4jj5p","fri-21-9":"fri-b4ytis.19xq0xi","fri-23-0":"fri-1tfnf75.1eeok8v","fri-23-1":"fri-1tfnf75.1icu01k","fri-23-2":"fri-1tfnf75.1rf8cld","fri-23-3":"fri-1tfnf75.1dmnswy","fri-23-4":"fri-1tfnf75.1e9ves0","fri-23-5":"fri-1tfnf75.1dmf6bq","fri-23-6":"fri-1tfnf75.1y6tgec","fri-24-0":"fri-i8p7j0.c73vv","fri-24-1":"fri-i8p7j0.1odypgu","fri-26-0":"fri-2ozbv3.lk7n7y","fri-26-1":"fri-2ozbv3.3dsuj8","fri-26-2":"fri-2ozbv3.1ri9dmh","fri-26-3":"fri-2ozbv3.1h2rmic"};
+const OLD_BLOCK={"thu-0":"thu-1x69haq","thu-1":"thu-2hdh7t","thu-2":"thu-yxrhck","thu-3":"thu-b8i7b4","thu-4":"thu-1xf4n0j","thu-5":"thu-ftiicq","thu-6":"thu-jdjl62","thu-7":"thu-1t3zrrs","thu-8":"thu-1892u9m","thu-9":"thu-oi354w","thu-10":"thu-1e42jm","thu-11":"thu-16jr81t","thu-12":"thu-12wvzzq","thu-13":"thu-jqquds","thu-14":"thu-vvyqpa","thu-15":"thu-16619nk","thu-16":"thu-1caplg5","fri-0":"fri-nfqpwx","fri-1":"fri-tms68w","fri-2":"fri-x54rfz","fri-3":"fri-ty24sl","fri-4":"fri-d2e2ln","fri-5":"fri-1wpb71q","fri-6":"fri-xra0lg","fri-7":"fri-2ew7mw","fri-8":"fri-1w43zws","fri-9":"fri-1xpsiiv","fri-10":"fri-ug4kjh","fri-11":"fri-y043hw","fri-12":"fri-1stu4qr","fri-13":"fri-43wmg8","fri-14":"fri-leqpcs","fri-15":"fri-gr3hj8","fri-16":"fri-ddcxz8","fri-17":"fri-m1ns8u","fri-18":"fri-1lp960m","fri-19":"fri-1havh7c","fri-20":"fri-6vztsx","fri-21":"fri-b4ytis","fri-22":"fri-122bwz2","fri-23":"fri-1tfnf75","fri-24":"fri-i8p7j0","fri-25":"fri-1caplg5","fri-26":"fri-2ozbv3"};
 </script>
 <script>window.__ST__={"checks":{},"leads":{},"moves":{},"deleted":{},"seq":0};</script>
 <script>
 (function(){
 var LANES={eisner:"Eisner",prod:"Production",av:"A/V",aaron:"FART Barn"};
 var PEOPLE=["Aaron","Philippe","Justin","Hannah","Shawn","Sam"];
-var DAYNAME={thu:"Thu",fri:"Fri"};
+var DAYNAME={thu:"Thu",fri:"Fri",sat:"Sat",sun:"Sun"};
 var P_STATE="{{"+"STATE}}", P_SRC="{{"+"SRC}}";
 var PKEY="trybal-s2-pending", VKEY="trybal-s2-view", AKEY="trybal-s2-attempts", LKEY="trybal-s2-local";
 
 /* ---------- block index ---------- */
-var BLOCKS=[], BYKEY={};
-["thu","fri"].forEach(function(d){
+var DAYS=["thu","fri","sat","sun"];
+var BLOCKS=[], BYKEY={}, ITEMS={};
+DAYS.forEach(function(d){
   DATA[d].forEach(function(b,bi){
-    var B={key:d+"-"+bi,d:d,bi:bi,b:b}; BLOCKS.push(B); BYKEY[B.key]=B;
+    var B={key:b.id,d:d,bi:bi,b:b}; BLOCKS.push(B); BYKEY[B.key]=B;
+    (b.i||[]).forEach(function(it){ ITEMS[it.id]={it:it,home:b.id}; });
   });
 });
-function homeOf(id){ var p=id.split("-"); return p[0]+"-"+p[1]; }
-function itemById(id){ var p=id.split("-"); var b=DATA[p[0]][+p[1]]; return b?b.i[+p[2]]:null; }
+function homeOf(id){ var r=ITEMS[id]; return r?r.home:null; }
+function itemById(id){ var r=ITEMS[id]; return r?r.it:null; }
+
+/* Task ids used to be positional (thu-0-3), which shifted whenever the
+   schedule changed. They are now derived from the task's own text, so an
+   assignment stays with its task. This remaps anything saved under the
+   old scheme, once. */
+function migrate(b){
+  var out={checks:{},leads:{},moves:{},deleted:{}}, changed=[];
+  ["checks","leads","moves","deleted"].forEach(function(g){
+    var src=b[g]||{};
+    Object.keys(src).forEach(function(k){
+      var v=src[k], nk=k, nv=v, hit=false;
+      if(OLD_ITEM[k]){ nk=OLD_ITEM[k]; hit=true; }
+      if(g==="moves"&&OLD_BLOCK[v]){ nv=OLD_BLOCK[v]; hit=true; }
+      if(!ITEMS[nk]) { if(hit) changed.push([g,k,null]); return; }
+      out[g][nk]=nv;
+      if(hit) changed.push([g,k,null],[g,nk,nv]);
+    });
+  });
+  return {board:out, changed:changed};
+}
 function slotLabel(k){ var B=BYKEY[k]; return DAYNAME[B.d]+" · "+B.b.t; }
 function slotFull(k){ var B=BYKEY[k]; return DAYNAME[B.d]+" · "+B.b.t+(B.b.p?" (proposed)":"")+" — "+strip(B.b.h); }
 function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
@@ -835,8 +2534,9 @@ var BASE=blank();
 try{
   var raw=window.__ST__;
   if(raw&&typeof raw==="object"){
-    BASE.checks=raw.checks||{}; BASE.leads=raw.leads||{}; BASE.moves=raw.moves||{};
-    BASE.deleted=raw.deleted||{};
+    var mg=migrate(raw);
+    BASE.checks=mg.board.checks; BASE.leads=mg.board.leads;
+    BASE.moves=mg.board.moves; BASE.deleted=mg.board.deleted;
     BASE.seq=typeof raw.seq==="number"?raw.seq:0;
   }
 }catch(e){}
@@ -901,7 +2601,7 @@ function grouped(){
   BLOCKS.forEach(function(B){ g[B.key]=[]; });
   BLOCKS.forEach(function(B){
     (B.b.i||[]).forEach(function(it,ii){
-      var id=B.key+"-"+ii;
+      var id=it.id;
       if(state.deleted[id]) return;
       var dest=destOf(id);
       g[dest].push({id:id,it:it,home:B.key,moved:dest!==B.key});
@@ -930,11 +2630,15 @@ function rerender(){
 window.__onSyncReady=function(sync){
   fb=sync;
   setMode("live");
-  sync.onBoard(function(b){
-    b=b||{};
-    BASE={checks:b.checks||{},leads:b.leads||{},moves:b.moves||{},deleted:b.deleted||{},seq:0};
+  sync.onBoard(function(raw){
+    var m=migrate(raw||{});
+    BASE={checks:m.board.checks,leads:m.board.leads,moves:m.board.moves,deleted:m.board.deleted,seq:0};
     pending=[]; ssDel(PKEY);
     recompute(); rerender();
+    if(m.changed.length){
+      console.log("[sync] migrating "+(m.changed.length/2|0)+" saved entries to stable ids");
+      m.changed.forEach(function(c){ sync.write(c[0],c[1],c[2]); });
+    }
   });
   sync.onConn(function(ok){ online=ok; paint(); });
 };
@@ -1123,15 +2827,14 @@ function build(d){
     });
     note.hidden=false;
     note.innerHTML = hits
-      ? "<b>"+hits+"</b> task"+(hits===1?"":"s")+" in "+blocks+" slot"+(blocks===1?"":"s")+" across both days"
+      ? "<b>"+hits+"</b> task"+(hits===1?"":"s")+" in "+blocks+" slot"+(blocks===1?"":"s")+" across all four days"
       : "<b>No matches.</b> Deleted tasks are not searched \u2014 check the list at the bottom.";
     applyFilter(); tally(); renderOpen(); renderTrash(); paint();
     return;
   }
   note.hidden=true;
-  DATA[d].forEach(function(b,bi){
-    var key=d+"-"+bi;
-    tl.appendChild(sectionFor(b,key,g[key],null));
+  DATA[d].forEach(function(b){
+    tl.appendChild(sectionFor(b,b.id,g[b.id],null));
   });
   applyFilter(); tally(); renderOpen(); renderTrash(); paint();
 }
@@ -1140,7 +2843,7 @@ function sectionFor(b,key,list,dayTag){
   var sec=document.createElement("section");
   sec.className="block "+(b.k==="prep"?"prep":b.k==="hard"?"hard":"");
   var head='<div class="thead"><span class="time">'+b.t+'</span>';
-  if(dayTag) head+='<span class="daytag">'+(dayTag==="thu"?"Thu 27":"Fri 28")+'</span>';
+  if(dayTag) head+='<span class="daytag">'+({thu:"Thu 27",fri:"Fri 28",sat:"Sat 29",sun:"Sun 30"}[dayTag]||dayTag)+'</span>';
   if(b.p) head+='<span class="tag prop">Proposed</span>';
   if(b.k==="hard") head+='<span class="tag hardt">Hard stop</span>';
   head+='</div><h2>'+b.h+'</h2>';
@@ -1169,8 +2872,8 @@ function renderTrash(){
   document.getElementById("trashhead").textContent="Deleted tasks ("+ids.length+")";
   var rows=[];
   BLOCKS.forEach(function(B){
-    (B.b.i||[]).forEach(function(it,ii){
-      var id=B.key+"-"+ii;
+    (B.b.i||[]).forEach(function(it){
+      var id=it.id;
       if(!state.deleted[id]) return;
       rows.push('<li><span class="tw">'+strip(it.t)
         +'<span class="ts">'+slotLabel(destOf(id))+" &middot; "+strip(B.b.h)+'</span></span>'
@@ -1214,8 +2917,8 @@ function tally(){
       });
     });
   } else {
-    DATA[day].forEach(function(b,bi){
-      g[day+"-"+bi].forEach(function(e){ c[bucket(leadOf(e.id,e.it))]++; if(e.moved) mv++; });
+    DATA[day].forEach(function(b){
+      g[b.id].forEach(function(e){ c[bucket(leadOf(e.id,e.it))]++; if(e.moved) mv++; });
     });
   }
   var h="";
@@ -1252,8 +2955,9 @@ function openSheet(id){
   moveId=id; lastFocus=document.activeElement;
   var it=itemById(id), cur=destOf(id), home=homeOf(id), h="", curDay="";
   sheetTitle.textContent=strip(it.t);
+  var DAYFULL={thu:"Thursday · Aug 27",fri:"Friday · Aug 28",sat:"Saturday · Aug 29",sun:"Sunday · Aug 30"};
   BLOCKS.forEach(function(B){
-    if(B.d!==curDay){ curDay=B.d; h+='<div class="slotday">'+(B.d==="thu"?"Thursday · Aug 27":"Friday · Aug 28")+'</div>'; }
+    if(B.d!==curDay){ curDay=B.d; h+='<div class="slotday">'+DAYFULL[B.d]+'</div>'; }
     h+='<button class="slot" data-slot="'+B.key+'" data-cur="'+(B.key===cur?1:0)+'" data-home="'+(B.key===home?1:0)+'">'
       +'<span class="st">'+B.b.t+'</span><span class="sh">'+B.b.h
       +(B.b.p?' <span class="sm">proposed</span>':'')
