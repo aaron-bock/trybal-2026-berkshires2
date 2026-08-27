@@ -1,0 +1,1364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trybal Berkshires Run of Show</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F5F7F3; --card:#FFFFFF; --sunk:#EDF0EA;
+  --ink:#161C17; --ink-2:#3D4A40; --ink-3:#6B7A6E;
+  --rule:#DCE2D8; --rule-2:#C7D0C2;
+  --eisner:#B23A2E; --prod:#22609E; --aaron:#2C7A50; --av:#B2367A;
+  --flag:#B65712; --flag-bg:#FBEEDF; --flag-rule:#EBCFAA;
+  --focus:#12574B;
+  --shadow:0 1px 2px rgba(22,28,23,.05),0 4px 14px rgba(22,28,23,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101410; --card:#181D18; --sunk:#131813;
+    --ink:#E9EEE7; --ink-2:#B4C0B4; --ink-3:#87947F;
+    --rule:#2A322A; --rule-2:#3A443A;
+    --eisner:#E8796A; --prod:#71ADEA; --aaron:#68C08D; --av:#E67CB5;
+    --flag:#E9A055; --flag-bg:#2A2013; --flag-rule:#4E3A1D;
+    --focus:#5FCDB8;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101410; --card:#181D18; --sunk:#131813;
+  --ink:#E9EEE7; --ink-2:#B4C0B4; --ink-3:#87947F;
+  --rule:#2A322A; --rule-2:#3A443A;
+  --eisner:#E8796A; --prod:#71ADEA; --aaron:#68C08D; --av:#E67CB5;
+  --flag:#E9A055; --flag-bg:#2A2013; --flag-rule:#4E3A1D;
+  --focus:#5FCDB8;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.45; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 14px 96px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+
+/* ---- masthead ---- */
+.mast{padding:26px 0 14px}
+.kicker{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+}
+h1{
+  font-family:"Archivo",sans-serif;font-weight:700;letter-spacing:-.025em;
+  font-size:clamp(28px,7vw,40px);line-height:1.02;margin:8px 0 10px;text-wrap:balance;
+}
+.sub{color:var(--ink-2);font-size:14.5px;max-width:60ch;margin:0}
+
+/* ---- sticky control bar ---- */
+.bar{
+  position:sticky;top:0;z-index:20;background:var(--paper);
+  border-bottom:1px solid var(--rule);margin:14px -14px 0;padding:8px 14px 9px;
+}
+.days{display:flex;gap:6px}
+.day{
+  flex:1;appearance:none;border:1px solid var(--rule-2);background:var(--card);
+  color:var(--ink-2);border-radius:8px;padding:9px 8px;cursor:pointer;
+  font-family:"Archivo",sans-serif;font-weight:600;font-size:14px;letter-spacing:-.01em;
+  display:flex;flex-direction:column;align-items:center;gap:1px;min-height:46px;
+}
+.day small{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;font-weight:400;color:var(--ink-3)}
+.day[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.day[aria-pressed="true"] small{color:var(--paper);opacity:.65}
+.filters{display:flex;gap:5px;overflow-x:auto;margin-top:8px;padding-bottom:2px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.fil{
+  appearance:none;white-space:nowrap;border:1px solid var(--rule-2);background:transparent;
+  color:var(--ink-2);border-radius:999px;padding:5px 11px;cursor:pointer;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+}
+.fil[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.fil.flagf[aria-pressed="true"]{background:var(--flag);border-color:var(--flag);color:#fff}
+
+/* ---- progress ---- */
+.prog{display:flex;align-items:center;gap:10px;margin-top:9px}
+.track{flex:1;height:4px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--focus);border-radius:99px;transition:width .25s ease}
+.pnum{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.reset{appearance:none;background:none;border:none;color:var(--ink-3);font-size:11px;cursor:pointer;font-family:"IBM Plex Mono",monospace;text-decoration:underline;padding:2px 0}
+
+/* ---- note strip ---- */
+.note{
+  background:var(--sunk);border:1px solid var(--rule);border-radius:10px;
+  padding:12px 14px;margin:18px 0 4px;font-size:13.5px;color:var(--ink-2);
+}
+.note b{color:var(--ink);font-weight:600}
+.note .dot{display:inline-block;width:8px;height:8px;border-radius:99px;vertical-align:middle;margin-right:5px}
+.note ul{margin:7px 0 0;padding-left:17px}
+.note li{margin:3px 0}
+
+/* ---- timeline ---- */
+.block{margin-top:22px;position:relative;padding-left:14px}
+.block::before{content:"";position:absolute;left:0;top:7px;bottom:0;width:2px;background:var(--rule)}
+.block.prep::before{background:repeating-linear-gradient(to bottom,var(--rule-2) 0 4px,transparent 4px 8px)}
+.block.hard::before{background:var(--flag)}
+.thead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:2px}
+.time{
+  font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:13px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em;color:var(--ink);
+}
+.block.prep .time{color:var(--ink-3)}
+.tag{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  border:1px solid var(--rule-2);color:var(--ink-3);border-radius:4px;padding:1.5px 5px;
+}
+.tag.prop{border-color:var(--rule-2);color:var(--ink-3)}
+.tag.hardt{border-color:var(--flag);color:var(--flag);background:var(--flag-bg)}
+h2{
+  font-family:"Archivo",sans-serif;font-weight:600;letter-spacing:-.02em;
+  font-size:19px;line-height:1.2;margin:3px 0 0;text-wrap:balance;
+}
+.block.prep h2{font-size:16.5px;font-weight:600;color:var(--ink-2)}
+.loc{font-size:12.5px;color:var(--ink-3);margin:2px 0 0;font-style:italic}
+
+/* ---- task rows ---- */
+.tasks{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+.tasks li{background:var(--card);margin:0}
+.tasks li.hide{display:none}
+label.row{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;cursor:pointer;min-height:44px}
+label.row input{
+  appearance:none;flex:0 0 auto;width:19px;height:19px;margin:1px 0 0;border:1.5px solid var(--rule-2);
+  border-radius:5px;background:var(--card);cursor:pointer;position:relative;
+}
+label.row input:checked{background:var(--focus);border-color:var(--focus)}
+label.row input:checked::after{
+  content:"";position:absolute;left:5.5px;top:1.5px;width:5px;height:10px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)
+}
+.txt{flex:1;min-width:0;font-size:14.5px;line-height:1.35}
+label.row input:checked ~ .txt{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
+.meta{display:block;font-size:12px;color:var(--ink-3);margin-top:2px;font-style:italic}
+.lane{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;font-weight:500;
+  letter-spacing:.09em;text-transform:uppercase;padding:1.5px 5px;border-radius:4px;
+  margin-left:6px;vertical-align:1.5px;border:1px solid currentColor;white-space:nowrap;
+}
+.lane.eisner{color:var(--eisner)} .lane.prod{color:var(--prod)}
+.lane.aaron{color:var(--aaron)} .lane.av{color:var(--av)}
+.flagpill{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;padding:1.5px 5px;border-radius:4px;margin-left:6px;
+  vertical-align:1.5px;color:var(--flag);background:var(--flag-bg);border:1px solid var(--flag-rule);white-space:nowrap;
+}
+.gap{
+  display:block;margin-top:4px;font-size:12px;color:var(--flag);
+  border-left:2px solid var(--flag-rule);padding-left:7px;font-style:normal;
+}
+.empty{padding:20px 12px;color:var(--ink-3);font-size:13.5px;text-align:center}
+
+/* ---- open items ---- */
+.open{margin-top:34px;border-top:2px solid var(--ink);padding-top:16px}
+.open h2{font-size:22px;font-weight:700}
+.open ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.open li{
+  font-size:14px;padding-left:15px;position:relative;color:var(--ink-2);
+}
+.open li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--flag);border-radius:1px}
+.open li b{color:var(--ink);font-weight:600}
+footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---- lead assignment ---- */
+:root{
+  --p-a:#0F5147; --p-a-bg:#DCEDE8; --p-a-br:#AFD5CB;
+  --p-p:#39468A; --p-p-bg:#E2E6F7; --p-p-br:#BDC6E9;
+  --p-j:#78357F; --p-j-bg:#F1E2F5; --p-j-br:#DCBFE4;
+  --p-h:#9B3155; --p-h-bg:#F7E1E8; --p-h-br:#E7BECC;
+  --p-s:#456218; --p-s-bg:#E6EFD9; --p-s-br:#C6D9AE;
+  --p-m:#8A5512; --p-m-bg:#F7E9D4; --p-m-br:#E5CDA5;
+  --p-o:#5C6B63; --p-o-bg:#E7EBE5; --p-o-br:#C7D0C2;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --p-a:#63D0BB; --p-a-bg:#123029; --p-a-br:#215048;
+    --p-p:#96A9F0; --p-p-bg:#1B2142; --p-p-br:#313A69;
+    --p-j:#D69EEB; --p-j-bg:#2C1B33; --p-j-br:#4A2C55;
+    --p-h:#EE9AB4; --p-h-bg:#331A23; --p-h-br:#522B39;
+    --p-s:#A8CF72; --p-s-bg:#1D2A12; --p-s-br:#33461F;
+    --p-m:#E0B26B; --p-m-bg:#2E2413; --p-m-br:#4B3B1E;
+    --p-o:#9BA89D; --p-o-bg:#1E241E; --p-o-br:#353E35;
+  }
+}
+:root[data-theme="dark"]{
+  --p-a:#63D0BB; --p-a-bg:#123029; --p-a-br:#215048;
+  --p-p:#96A9F0; --p-p-bg:#1B2142; --p-p-br:#313A69;
+  --p-j:#D69EEB; --p-j-bg:#2C1B33; --p-j-br:#4A2C55;
+  --p-h:#EE9AB4; --p-h-bg:#331A23; --p-h-br:#522B39;
+  --p-s:#A8CF72; --p-s-bg:#1D2A12; --p-s-br:#33461F;
+  --p-m:#E0B26B; --p-m-bg:#2E2413; --p-m-br:#4B3B1E;
+  --p-o:#9BA89D; --p-o-bg:#1E241E; --p-o-br:#353E35;
+}
+.rowwrap{display:flex;align-items:flex-start;gap:6px;padding-right:9px}
+.rowwrap label.row{flex:1;min-width:0;padding-right:0}
+.leadwrap{flex:0 0 auto;padding-top:9px;display:flex}
+.lead{
+  appearance:none;-webkit-appearance:none;
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:500;letter-spacing:.06em;
+  text-transform:uppercase;border:1px solid var(--p-o-br);background:var(--p-o-bg);color:var(--ink-3);
+  border-radius:999px;padding:6px 10px;min-height:32px;cursor:pointer;
+  max-width:118px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;
+}
+.lead[data-who="Aaron"]{color:var(--p-a);background:var(--p-a-bg);border-color:var(--p-a-br)}
+.lead[data-who="Philippe"]{color:var(--p-p);background:var(--p-p-bg);border-color:var(--p-p-br)}
+.lead[data-who="Justin"]{color:var(--p-j);background:var(--p-j-bg);border-color:var(--p-j-br)}
+.lead[data-who="Hannah"]{color:var(--p-h);background:var(--p-h-bg);border-color:var(--p-h-br)}
+.lead[data-who="Shawn"]{color:var(--p-s);background:var(--p-s-bg);border-color:var(--p-s-br)}
+.lead[data-who="Sam"]{color:var(--p-m);background:var(--p-m-bg);border-color:var(--p-m-br)}
+.lead[data-who="other"]{color:var(--ink-2);background:var(--sunk);border-color:var(--rule-2)}
+.lead[data-who=""]{opacity:.72}
+.lead.auto{border-style:dashed}
+.othin{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;width:96px;min-height:32px;
+  border:1px solid var(--focus);background:var(--card);color:var(--ink);
+  border-radius:999px;padding:6px 10px;
+}
+.filrow{display:flex;align-items:center;gap:5px;overflow-x:auto;margin-top:6px;padding-bottom:2px;scrollbar-width:none}
+.filrow::-webkit-scrollbar{display:none}
+.filrow .lbl{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);flex:0 0 auto;padding-right:2px;
+}
+.fil[data-lead="Aaron"][aria-pressed="true"]{background:var(--p-a);border-color:var(--p-a);color:var(--paper)}
+.fil[data-lead="Philippe"][aria-pressed="true"]{background:var(--p-p);border-color:var(--p-p);color:var(--paper)}
+.fil[data-lead="Justin"][aria-pressed="true"]{background:var(--p-j);border-color:var(--p-j);color:var(--paper)}
+.fil[data-lead="Hannah"][aria-pressed="true"]{background:var(--p-h);border-color:var(--p-h);color:var(--paper)}
+.fil[data-lead="Shawn"][aria-pressed="true"]{background:var(--p-s);border-color:var(--p-s);color:var(--paper)}
+.fil[data-lead="Sam"][aria-pressed="true"]{background:var(--p-m);border-color:var(--p-m);color:var(--paper)}
+.tally2{
+  display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;
+}
+.chip{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.05em;
+  padding:3px 8px;border-radius:999px;border:1px solid var(--p-o-br);background:var(--p-o-bg);color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+.chip[data-who="Aaron"]{color:var(--p-a);background:var(--p-a-bg);border-color:var(--p-a-br)}
+.chip[data-who="Philippe"]{color:var(--p-p);background:var(--p-p-bg);border-color:var(--p-p-br)}
+.chip[data-who="Justin"]{color:var(--p-j);background:var(--p-j-bg);border-color:var(--p-j-br)}
+.chip[data-who="Hannah"]{color:var(--p-h);background:var(--p-h-bg);border-color:var(--p-h-br)}
+.chip[data-who="Shawn"]{color:var(--p-s);background:var(--p-s-bg);border-color:var(--p-s-br)}
+.chip[data-who="Sam"]{color:var(--p-m);background:var(--p-m-bg);border-color:var(--p-m-br)}
+.chip.none{color:var(--flag);background:var(--flag-bg);border-color:var(--flag-rule)}
+.copy{
+  appearance:none;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;border:1px solid var(--ink);background:var(--ink);color:var(--paper);
+  border-radius:8px;padding:9px 14px;cursor:pointer;margin-top:14px;min-height:40px;
+}
+.done{color:var(--ink-3);text-decoration:line-through}
+
+/* ---- move to another slot ---- */
+.leadwrap{flex-direction:column;align-items:flex-end;gap:4px}
+.movebtn{
+  appearance:none;background:none;border:none;cursor:pointer;padding:2px 4px;
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);text-decoration:underline;text-underline-offset:2px;min-height:22px;
+}
+.movebtn:hover{color:var(--focus)}
+.movedfrom{
+  display:block;margin-top:4px;font-size:11.5px;font-family:"IBM Plex Mono",monospace;
+  color:var(--focus);letter-spacing:.02em;
+}
+.movedfrom .undo{
+  appearance:none;background:none;border:none;color:var(--ink-3);cursor:pointer;
+  font-family:inherit;font-size:11px;text-decoration:underline;padding:0 0 0 6px;
+}
+li.movedin{background:linear-gradient(to right,var(--sunk),var(--card) 60px)}
+.emptyblock{
+  padding:11px 12px;font-size:12.5px;color:var(--ink-3);font-style:italic;
+  border:1px dashed var(--rule-2);border-radius:10px;margin-top:10px;
+}
+/* sheet */
+.sheet{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center}
+.sheet[hidden]{display:none}
+.sheetbg{position:absolute;inset:0;background:rgba(10,16,11,.55)}
+.sheetpanel{
+  position:relative;width:100%;max-width:760px;max-height:82vh;display:flex;flex-direction:column;
+  background:var(--paper);border-top-left-radius:16px;border-top-right-radius:16px;
+  border:1px solid var(--rule);border-bottom:none;box-shadow:0 -8px 40px rgba(0,0,0,.28);
+}
+.sheethead{
+  display:flex;align-items:flex-start;gap:12px;padding:16px 16px 12px;border-bottom:1px solid var(--rule);
+}
+.sheethead .lbl2{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+}
+.sheethead h3{font-family:"Archivo",sans-serif;font-weight:600;font-size:16px;margin:3px 0 0;letter-spacing:-.015em;line-height:1.25}
+.sheetx{
+  appearance:none;flex:0 0 auto;background:none;border:1px solid var(--rule-2);border-radius:8px;
+  color:var(--ink-2);cursor:pointer;padding:7px 11px;min-height:36px;
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+}
+.sheetlist{overflow-y:auto;padding:8px 10px 26px;-webkit-overflow-scrolling:touch}
+.slotday{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);padding:14px 6px 6px;position:sticky;top:0;background:var(--paper);
+}
+.slot{
+  display:flex;align-items:baseline;gap:10px;width:100%;text-align:left;cursor:pointer;
+  background:var(--card);border:1px solid var(--rule);border-radius:9px;padding:11px 12px;
+  margin-bottom:5px;color:var(--ink);min-height:46px;
+}
+.slot:hover{border-color:var(--focus)}
+.slot .st{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;color:var(--ink-2);
+  flex:0 0 96px;font-variant-numeric:tabular-nums;
+}
+.slot .sh{font-size:13.5px;line-height:1.3;flex:1;min-width:0}
+.slot .sm{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.slot[data-cur="1"]{border-color:var(--ink);background:var(--sunk)}
+.slot[data-home="1"] .sh::after{content:" · original";color:var(--focus);font-size:11.5px}
+.slot[data-cur="1"][data-home="1"] .sh::after{content:""}
+.chip.mv{color:var(--focus);border-color:var(--focus);background:transparent}
+
+/* ---- search ---- */
+.searchwrap{position:relative;margin-top:7px}
+.search{
+  width:100%;appearance:none;border:1px solid var(--rule-2);background:var(--card);color:var(--ink);
+  border-radius:9px;padding:10px 34px 10px 32px;min-height:42px;font-size:15px;
+  font-family:"Instrument Sans",sans-serif;
+}
+.search::placeholder{color:var(--ink-3)}
+.search:focus{border-color:var(--focus);outline:none;box-shadow:0 0 0 2px var(--flag-bg)}
+.searchwrap .mag{
+  position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--ink-3);
+  font-size:13px;pointer-events:none;line-height:1;
+}
+.searchx{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);appearance:none;border:none;
+  background:none;color:var(--ink-3);cursor:pointer;font-size:17px;line-height:1;padding:6px 8px;
+}
+.searchx[hidden]{display:none}
+body.searching .livenote,body.searching .note{display:none}
+.srnote{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;color:var(--ink-3);
+  margin:8px 0 0;
+}
+.srnote b{color:var(--focus);font-weight:500}
+.block .daytag{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  border:1px solid var(--rule-2);color:var(--ink-3);border-radius:4px;padding:1.5px 5px;
+}
+mark{background:var(--flag-bg);color:inherit;border-radius:2px;padding:0 1px}
+
+/* ---- delete / restore ---- */
+.rowacts{display:flex;gap:9px;align-items:center}
+.delbtn{
+  appearance:none;background:none;border:none;cursor:pointer;padding:2px 4px;
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);text-decoration:underline;text-underline-offset:2px;min-height:22px;
+}
+.delbtn:hover,.delbtn.armed{color:var(--eisner)}
+.delbtn.armed{font-weight:600}
+.trash{margin-top:30px;border-top:1px solid var(--rule);padding-top:16px}
+.trash[hidden]{display:none}
+.trash h2{font-family:"Archivo",sans-serif;font-weight:600;font-size:17px;margin:0;letter-spacing:-.02em}
+.trash p.hint{font-size:12.5px;color:var(--ink-3);margin:4px 0 0}
+.trash ul{list-style:none;margin:11px 0 0;padding:0;display:flex;flex-direction:column;gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.trash li{background:var(--card);display:flex;gap:10px;align-items:flex-start;padding:10px 12px}
+.trash .tw{flex:1;min-width:0;font-size:14px}
+.trash .ts{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);margin-top:2px}
+.restore{
+  appearance:none;flex:0 0 auto;border:1px solid var(--focus);background:transparent;color:var(--focus);
+  border-radius:999px;padding:6px 11px;cursor:pointer;min-height:32px;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+}
+body.ro .delbtn,body.ro .restore{pointer-events:none;opacity:.55}
+
+/* ---- live sync ---- */
+.status{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+  padding:3px 8px;border-radius:999px;border:1px solid var(--rule-2);color:var(--ink-3);
+  white-space:nowrap;flex:0 0 auto;
+}
+.status.ok{color:var(--focus);border-color:var(--focus)}
+.status.warn{color:var(--flag);border-color:var(--flag-rule);background:var(--flag-bg)}
+.reset.armed{color:var(--flag);font-weight:600}
+body.ro .lead,body.ro .movebtn,body.ro .undo,body.ro label.row input,body.ro .reset{
+  pointer-events:none;opacity:.55;
+}
+.livenote{
+  display:flex;gap:9px;align-items:flex-start;margin:16px 0 0;padding:11px 13px;
+  border:1px solid var(--focus);border-radius:10px;font-size:13px;color:var(--ink-2);
+}
+.livenote b{color:var(--ink)}
+.livenote .bullet{color:var(--focus);font-size:15px;line-height:1.15}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="kicker">Trybal Berkshires · Eisner Camp · Session 2</div>
+    <h1>Run of Show &amp; Setup Checklist</h1>
+    <p class="sub">Thursday Aug 27 &amp; Friday Aug 28, 2026. Every setup, production, A/V and Eisner task pulled from the main Session 2 schedule. Saved in your own browser on this device &mdash; this public copy does not sync between people. A/V tasks default to Justin, and any task can be moved, searched for, or deleted and restored.</p>
+  </header>
+
+  <div class="bar">
+    <div class="days">
+      <button class="day" data-day="thu" aria-pressed="true">Thursday<small>AUG 27</small></button>
+      <button class="day" data-day="fri" aria-pressed="false">Friday<small>AUG 28</small></button>
+    </div>
+    <div class="searchwrap">
+      <span class="mag">&#9906;</span>
+      <input class="search" id="search" type="text" autocomplete="off" placeholder="Search tasks, slots, notes&hellip;" aria-label="Search tasks">
+      <button class="searchx" id="searchx" hidden aria-label="Clear search">&times;</button>
+    </div>
+    <div class="filters">
+      <button class="fil" data-fil="all" aria-pressed="true">All</button>
+      <button class="fil flagf" data-fil="flag" aria-pressed="false">Needs owner</button>
+      <button class="fil" data-fil="prod" aria-pressed="false">Production</button>
+      <button class="fil" data-fil="av" aria-pressed="false">A/V</button>
+      <button class="fil" data-fil="eisner" aria-pressed="false">Eisner</button>
+      <button class="fil" data-fil="aaron" aria-pressed="false">FART Barn</button>
+    </div>
+    <div class="filrow">
+      <span class="lbl">Lead</span>
+      <button class="fil" data-lead="all" aria-pressed="true">All</button>
+      <button class="fil" data-lead="Aaron" aria-pressed="false">Aaron</button>
+      <button class="fil" data-lead="Philippe" aria-pressed="false">Philippe</button>
+      <button class="fil" data-lead="Justin" aria-pressed="false">Justin</button>
+      <button class="fil" data-lead="Hannah" aria-pressed="false">Hannah</button>
+      <button class="fil" data-lead="Shawn" aria-pressed="false">Shawn</button>
+      <button class="fil" data-lead="Sam" aria-pressed="false">Sam</button>
+      <button class="fil" data-lead="other" aria-pressed="false">Other</button>
+      <button class="fil" data-lead="none" aria-pressed="false">No lead</button>
+    </div>
+    <div class="tally2" id="tally2"></div>
+    <div class="prog">
+      <div class="track"><div class="fill" id="fill"></div></div>
+      <span class="pnum" id="pnum">0/0</span>
+      <span class="status" id="status">Connecting&hellip;</span>
+      <button class="reset" id="reset">reset</button>
+    </div>
+  </div>
+
+  <div class="livenote">
+    <span class="bullet">&#9679;</span>
+    <span><b>This is a public read-along copy.</b> Ticking a box, setting a lead or moving a task is kept in <em>your</em> browser on <em>this</em> device only &mdash; nobody else sees it, and it will not follow you to another phone. Use it to read the run of show; keep the real assignments in the shared board.</span>
+  </div>
+
+  <div class="note">
+    <b>Before you use this.</b>
+    <ul>
+      <li><b>Times marked <span style="font-family:'IBM Plex Mono',monospace">PROPOSED</span></b> are mine, back-timed from each event. The schedule states start times for events, not for setup — the only stated setup window is Dining Hall 2:00–4:00 pm. Adjust freely.</li>
+      <li><b>A dashed lead pill is a default, not a decision.</b> Every A/V task starts on Justin with a dashed outline. Pick anyone from the pill — Aaron, Philippe, Justin, Hannah, Shawn or Sam — and it turns solid. "Other…" lets you type any other name. <em>Reset</em> clears all leads back to the defaults.</li>
+      <li><b>Nothing is locked to its slot.</b> <em>Move</em> on any task sends it to any other time slot on either day — it lands there tagged with where it came from, with a one-tap undo.</li>
+      <li><b>Search covers both days at once.</b> Type in the box and matching tasks appear grouped under their slots, labelled Thu or Fri. Clear it to go back to the timeline.</li>
+      <li><b>Deleting is reversible.</b> <em>Delete</em> asks once, then hides the task in your copy. Every deleted task is listed at the bottom of the page with a Restore button.</li>
+      <li><b>Reset clears your own copy.</b> It asks once before it does, and only affects this device.</li>
+      <li><b>Lane tags are conservative.</b> The doc's color key (red Eisner / blue Production / green Aaron / pink A/V) did not survive the export, so a lane is tagged only where the text itself says so. Untagged rows are setup with no stated owner.</li>
+    </ul>
+  </div>
+
+  <p class="srnote" id="srnote" hidden></p>
+
+  <main id="tl"></main>
+
+  <section class="trash" id="trash" hidden>
+    <h2 id="trashhead">Deleted tasks</h2>
+    <p class="hint">Deleted from your copy, but never gone &mdash; restore any of them back into their original slot.</p>
+    <ul id="trashlist"></ul>
+  </section>
+
+  <section class="open">
+    <h2>Open items to close at the staff meeting</h2>
+    <button class="copy" id="copybtn">Copy assignment list</button>
+    <ul id="openlist"></ul>
+  </section>
+
+  <footer>
+    Shared state lives in this page &mdash; each change publishes a new version that every open copy loads. Built from the main "Session 2 – Berkshires 2026 Schedule" tab. The "Amy" tab conflicts on several points (16 tables vs 13 for Trybal TV, Universal Lawn vs Shawn's Lawn for Thursday afterhours, and different elective leads in every round) — those differences are not reflected here.
+  </footer>
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheetbg" data-close></div>
+    <div class="sheetpanel" role="dialog" aria-modal="true" aria-labelledby="sheettitle">
+      <div class="sheethead">
+        <div style="flex:1;min-width:0">
+          <div class="lbl2">Move to</div>
+          <h3 id="sheettitle"></h3>
+        </div>
+        <button class="sheetx" data-close>Close</button>
+      </div>
+      <div class="sheetlist" id="sheetlist"></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+const DATA={thu:[
+{t:"1:00 PM",p:1,k:"prep",h:"Pre-camp pull &amp; stage",loc:"Office / storage / kitchen",i:[
+ {t:"Collect the bin of 30 objects for TaskMaster",m:"Doc flags this as still to be gathered"},
+ {t:"Ask Pele for 2–3 trays for Champagne &amp; Cookies"},
+ {t:"Get the biggest bowl from the kitchen for name tags / water bottles"},
+ {t:"Signs reframed and brought to check-in",f:1},
+ {t:"Elective sheets",m:"Listed as evening homework — do now if there's time"},
+ {t:"Prize notecards",m:"Evening homework"},
+ {t:"Connections prompts",m:"e.g. four celebrities who follow Eitan; things that come out of your nose"},
+ {t:"Trybal Tribune — Carine, Eitan, Shawn",m:"Evening homework"}]},
+
+{t:"2:00 PM",p:1,k:"prep",h:"Quad station build — Arrival &amp; Check-in",loc:"The Quad · 20 tables available, 8 picnic tables, canoe",i:[
+ {t:"Make the rain call",m:"Doc says \"plan for inside again\" — decide early enough to move tables"},
+ {t:"Set stations on the Quad"},
+ {t:"Champagne &amp; Cookies — flutes assembled, bring cups as backup",f:1},
+ {t:"Reserve some champagne for Sip 'n' Paint",m:"Plenty available; the rest is free for check-in"},
+ {t:"Swag bags / bunk assignments brought to check-in and set up",m:"Already assembled",f:1},
+ {t:"Shawn in the Sheets — bring to station",f:1,g:"Doc reads \"Brought to\" — destination was never filled in."},
+ {t:"Name tags / water bottles in the big kitchen bowl",f:1},
+ {t:"Cotton candy: machine, cones, sugar + extension cord",f:1},
+ {t:"Mailbox Buddies station",f:1},
+ {t:"DJ vibes — whatever Justin needs",l:"av"}]},
+
+{t:"2:30 PM",p:1,k:"prep",h:"Bubbe's Beer Garden",loc:"Sam owns this",i:[
+ {t:"Flamingos — half here, half held back for the pool"},
+ {t:"Lawn games",f:1},
+ {t:"Friendship bracelets, picnic tables, etc.",f:1},
+ {t:"Chalkboard",f:1,g:"Amy tab has a prompt written for this: \"Someone should start a rumor that ______\""},
+ {t:"Trampolines &amp; bubbles set out"},
+ {t:"Canoe + 1 case vitamin water",l:"prod"},
+ {t:"Snack"}]},
+
+{t:"3:30 PM",p:1,k:"prep",h:"Arrival logistics",loc:"Parking lot &amp; entry road",i:[
+ {t:"Golf cart staged at the parking lot to help people"},
+ {t:"Parking / directional signage posted"},
+ {t:"Confirm bus ETA",m:"Scheduled to arrive 4:30–5:00 pm"}]},
+
+{t:"4:00 – 6:00 PM",k:"event",h:"Arrival &amp; Check-in",loc:"The Quad",i:[
+ {t:"Bus arrives 4:30–5:00 pm"},
+ {t:"Stations live — restock cookies, champagne, cotton candy through the window"}]},
+
+{t:"5:45 PM",p:1,k:"prep",h:"Opening Ceremony A/V check",i:[
+ {t:"Speaker",l:"av"},
+ {t:"Wireless mic",l:"av"},
+ {t:"Confetti rings staged"}]},
+
+{t:"6:00 – 6:30 PM",k:"event",h:"Opening Ceremony",i:[]},
+
+{t:"6:15 PM",p:1,k:"prep",h:"Rotation stations staffed &amp; stocked",loc:"Order: FART Barn → Beit Am → BBG → Shawn's Lawn → Dock",i:[
+ {t:"1. Selfie — FART Barn — Amanda"},
+ {t:"2. Campfire — Beit Am campfire",f:1},
+ {t:"3. Parachute — BBG",f:1},
+ {t:"4. Group Jump Rope &amp; Photos — Shawn's Lawn — Jay, Hannah S.",m:"Jeff Fein noted for random team building — unconfirmed"},
+ {t:"5. Singdown — Dock — Micah and Jeff"}]},
+
+{t:"6:30 – 7:45 PM",k:"event",h:"Rotations / Tour",i:[]},
+
+{t:"7:15 PM",p:1,k:"prep",h:"Silent Disco build",loc:"BBG · rain location Beit Am",i:[
+ {t:"Walk 3 headphone tables to the front of the stage",l:"av",g:"Doc reads \"will need to be walked over from ___\" — origin never specified."},
+ {t:"2 tables in back by the A/V booth for drinks",l:"prod"},
+ {t:"Confirm the Beit Am rain location is ready"}]},
+
+{t:"7:30 PM",p:1,k:"prep",h:"Trybal TV Nite build",loc:"Beit Am · runs parallel with Silent Disco at BBG",i:[
+ {t:"13 tables + 10 chairs each, U shape",g:"Bunk roster lists 14 bunks and the Amy tab says 16 tables. Confirm the count before you set."},
+ {t:"3 extra tables covered in plastic"},
+ {t:"Whiteboard + dry erase markers at every table"},
+ {t:"Bunk name on every table"},
+ {t:"Supplies out: pens, Crayola markers, paper, several rolls of paper towels"},
+ {t:"Bin of 30 objects at the TaskMaster station"},
+ {t:"15 topo chicos — check they are full",m:"TaskMaster bit is stuffing the banana into the topo chico"},
+ {t:"15 bananas + 15 bottle openers"},
+ {t:"Drinks in bus bins — 5 bins: Truly, Downeast, Crystal Light",l:"prod"},
+ {t:"A/V: Justin + Adam with laptop",l:"av"}]},
+
+{t:"8:10 – 8:45 PM",k:"event",h:"Dinner",i:[
+ {t:"Bring the sheets from check-in to the back of the dining hall"}]},
+
+{t:"8:45 – 9:15 PM",k:"event",h:"Transition — get warmer clothes",i:[]},
+
+{t:"9:15 – 10:45 PM",k:"event",h:"Evening Program: Trybal TV Nite",loc:"Beit Am",i:[
+ {t:"Run order: IMDB bunk profile → Family Feud → Price is Right → Commercials Pt 1 → Name That Tune → Commercials Pt 2 → TaskMaster"},
+ {t:"Drinks — Production",l:"prod"},
+ {t:"All staff present electives Rounds 1–3 + Early Risers"},
+ {t:"Remind everyone about Funky Hat Friday"}]},
+
+{t:"10:30 PM",p:1,k:"prep",h:"Afterhours Campfire build",loc:"Shawn's Lawn",i:[
+ {t:"Confirm Eisner built the fire circle",l:"eisner"},
+ {t:"Campfire, benches in a circle, extra wood, lighter"},
+ {t:"Table + trash"},
+ {t:"S'mores bar",l:"prod"},
+ {t:"Bring drinks from Beit Am, restocking en route",l:"prod"},
+ {t:"1 production staffer assigned to the fire",f:1}]},
+
+{t:"11:00 PM – till",k:"event",h:"Afterhours Campfire",loc:"Shawn's Lawn",i:[
+ {t:"Staff lead: Jeff, Micah + Josh"},
+ {t:"Bigs &amp; Littles meet"},
+ {t:"Staff meeting"}]},
+
+{t:"12:00 AM",k:"hard",h:"CONFIRM FIRES ARE OUT",i:[]}
+],
+fri:[
+{t:"7:00 AM",p:1,k:"prep",h:"Early Risers build",loc:"The Dock",i:[
+ {t:"Yoga mats from Raccoon Manor",l:"prod"},
+ {t:"Extension cords from Raccoon Manor to the dock",l:"av"},
+ {t:"1 table at the dock"},
+ {t:"A/V — Justin's business",l:"av"}]},
+
+{t:"7:30 – 8:15 AM",k:"event",h:"Early Risers: Yoga on the Dock",loc:"Staff lead: Ari, Yael",i:[]},
+
+{t:"8:00 AM",p:1,k:"prep",h:"Breakfast setup",loc:"Dining Hall",i:[
+ {t:"Cold coffee in bins at the back of the dining hall",l:"prod"},
+ {t:"Prize Wheel &amp; Oprah Giveaways — bring from the office",f:1,g:"Main schedule leaves the owner blank. Amy tab has Harris."},
+ {t:"Connections — Samantha"}]},
+
+{t:"8:30 – 9:15 AM",k:"event",h:"Breakfast",i:[
+ {t:"9:00 AM — Irene Rosenzweig arrives"}]},
+
+{t:"9:00 AM",p:1,k:"prep",h:"Elective Round 1 station prep",i:[
+ {t:"Mahjong set up in BK Lounge"},
+ {t:"Paper 3 picnic tables at Shawn's Lawn"},
+ {t:"Yoga mats at the dock — check with Yael first"},
+ {t:"Speaker to Mailboxes (Bachata)",l:"av"},
+ {t:"Speaker to Hockey Barn (Human Foosball)",l:"av"},
+ {t:"Challenge Course open",l:"eisner"},
+ {t:"Pool open",l:"eisner"}]},
+
+{t:"9:15 – 9:30 AM",k:"event",h:"Transition",loc:"Info Booth™ — Jeff Fein",i:[]},
+
+{t:"9:30 – 10:30 AM",k:"event",h:"Elective Round 1",loc:"10 electives",i:[
+ {t:"Block Printed Tote Bags — FART Barn — Amanda (15)",l:"aaron",m:"Listed as Aaron's FART Barn"},
+ {t:"Human Foosball — Hockey Pavilion — Jeff (14)"},
+ {t:"Bachata Dancing — Mailboxes — Micah (15)"},
+ {t:"Pickleball Beginners — Tennis Courts — Josh/Amit (12)"},
+ {t:"Bialy Baking — Dining Hall — Liz (12)"},
+ {t:"Persian Pickling — Shawn's Lawn — Shawn (12)"},
+ {t:"Aerial Adventure — Challenge Course — Brooklyn (15)"},
+ {t:"Mahjong — BK Lounge — Irene (12)"},
+ {t:"Myofascial Release — Dock — Yael (12)"},
+ {t:"Model Rocketry — FART Barn Upstairs — Eitan (12)",l:"aaron"}]},
+
+{t:"10:30 – 10:45 AM",p:1,k:"prep",h:"Transition — Round 2 flip",i:[
+ {t:"Speaker stays at Hockey Barn (Human Foosball)",l:"av"},
+ {t:"Speaker to Tree on the Hill (Slip 'n' Slide) — BATTERY POWERED",l:"av",m:"No outlet at that location"},
+ {t:"Drinks to FART Barn upstairs — ask Brooklyn what she wants",l:"prod"},
+ {t:"Lake open: Boating &amp; Aqua Ninja Park",l:"eisner"},
+ {t:"Challenge Course",l:"eisner"}]},
+
+{t:"10:45 – 11:45 AM",k:"event",h:"Elective Round 2",i:[
+ {t:"Block Printed Tote Bags — FART Barn — Amanda (15)",l:"aaron"},
+ {t:"Human Foosball — Hockey Pavilion — Eitan (16)"},
+ {t:"Slip 'n' Slide Surprise — Tree on the Hill — Josh/Jeff (14)"},
+ {t:"Bialy Baking — Dining Hall — Liz (12)"},
+ {t:"Moroccan Preserved Lemons — Shawn's Lawn — Shawn (12)"},
+ {t:"Aerial Adventure — High Ropes — Eisner + Micah (15)",l:"eisner"},
+ {t:"Sip 'n' Paint — FART Barn Upstairs — Brooklyn (15)",l:"aaron",m:"Champagne held back from Thursday check-in"},
+ {t:"Mahjong — BK Lounge — Irene + campers (16)"},
+ {t:"Herbal Bath Salt — BBG — Yael (12)"},
+ {t:"Aqua Ninja Park — Lake (15)",f:1,g:"Lead is blank in the main schedule. Amy tab has Josh."}]},
+
+{t:"12:00 – 1:00 PM",k:"event",h:"Lunch",i:[
+ {t:"Commonalities — staff lead",f:1,g:"Doc reads \"Shawn? Eitan?\" — never decided."},
+ {t:"Funky Hat Friday™"},
+ {t:"Staff meeting — Shabbat &amp; Pool Party review"}]},
+
+{t:"1:00 – 1:30 PM",p:1,k:"prep",h:"Break — Round 3 flip",i:[
+ {t:"Info Booth™ — Jeff"},
+ {t:"Ice to FART Barn",l:"prod"},
+ {t:"Drinks to BBG — ask Brooklyn",l:"prod"},
+ {t:"Speaker to Mailboxes (Salsa)",l:"av"},
+ {t:"Speaker at Tree on the Hill (Slip 'n' Slide)",l:"av"},
+ {t:"Challenge Course",l:"eisner"}]},
+
+{t:"1:30 – 2:30 PM",k:"event",h:"Elective Round 3",i:[
+ {t:"Ice Dye — FART Barn — Amanda (15)",l:"aaron"},
+ {t:"Slip 'n' Slide Surprise — Tree on the Hill — Josh/Jeff (16)"},
+ {t:"Salsa Dancing — Mailboxes — Justin (16)",m:"Justin is also the A/V lead — check he can cover both"},
+ {t:"Babka-licious Baking — Dining Hall — Liz (12)",g:"Overlaps the 2:00–4:00 pm dining hall setup for Shabbat."},
+ {t:"Tequila Gedola Mixology — BBG — Brooklyn + Dror (15)"},
+ {t:"Moroccan Preserved Lemons — Shawn's Lawn — Shawn (12)"},
+ {t:"Aerial Adventure — High Ropes — Eisner + Micah (15)",l:"eisner"},
+ {t:"Dead Sea Mud Masks — FART Barn Upstairs — Maayan + Bar (12)",l:"aaron"},
+ {t:"Pimp My Hinge (or other) — BK Lounge — Eitan (15)"},
+ {t:"Myofascial Release — Dock — Yael (15)"}]},
+
+{t:"1:45 PM",p:1,k:"prep",h:"Pool Party build — \"Flamingle\"",loc:"⚠ Overlaps Elective Round 3 and the dining hall setup",i:[
+ {t:"Tablecloths — 2 drinks tables, 1 DJ table"},
+ {t:"Garlands on the pop-up tent"},
+ {t:"Half the lawn flamingos moved from BBG to the pool"},
+ {t:"Flamingo coozies — Josh leads with ambassadors"},
+ {t:"4 snack tables by the pool"},
+ {t:"Snacks: Vego bears (all), Beans (50), Matzah Project (all), Maine crackers",l:"prod"},
+ {t:"Drinks: Suncruiser, Truly, Topo Chico cans, IPAs, Crystal Light, Sinless Spirit, Dogfishhead, Down East, Athletic Brewing, Vitamin Water (2 cases)",l:"prod"},
+ {t:"Drinks setup / reloading crew",f:1},
+ {t:"Shmoozers",f:1},
+ {t:"Clean-up crew",f:1}]},
+
+{t:"2:00 – 4:00 PM",k:"event",h:"Dining Hall Setup",loc:"Production: Sam · the only setup window the doc actually times",i:[
+ {t:"Move uplit TRYBAL letters from the plaque barn + four blue lights",l:"prod"},
+ {t:"One set of ritual items at the front",l:"prod"},
+ {t:"Unlit tea lights on the tables",l:"prod"},
+ {t:"Lit votive candles",l:"prod"},
+ {t:"Extension cord for the lights",l:"av"}]},
+
+{t:"2:30 – 5:30 PM",k:"event",h:"Pool Party &amp; Free Time",loc:"Pool closes at 5:00 · Theme: Flamingle",i:[]},
+
+{t:"4:15 PM",p:1,k:"prep",h:"Soirée en Blanc build",loc:"Theme: Shabbat Impressions",i:[
+ {t:"11 tables + tablecloths"},
+ {t:"Signs in plastic frames"},
+ {t:"Confirm Eisner is doing the snack",l:"eisner",m:"Doc: \"make sure they do it\""},
+ {t:"Metal stamping station"},
+ {t:"Letter writing + wax seal — Shawn"},
+ {t:"Cocktails: spiked pickle lemonade — Liz",m:"Ask Liz what help she needs"},
+ {t:"Bartenders: ice + whatever mixers they ask for",l:"prod"},
+ {t:"Bigs/Littles mugs set up — Samantha, Josh"},
+ {t:"Pressure points — Yael &amp; Brooklyn"},
+ {t:"Night elective signup + Saturday affinity table signup",f:1}]},
+
+{t:"5:00 PM",p:1,k:"prep",h:"Services &amp; A/V check",i:[
+ {t:"Outdoor lighting up",l:"av",m:"Outlet locations were set during pre-camp"},
+ {t:"Silent disco",l:"av"},
+ {t:"Speaker with mic",l:"av"},
+ {t:"Justin on A/V, assist from Michael",l:"av"},
+ {t:"Shabbat-O-Grams staged — 4 people on 2 golf carts"}]},
+
+{t:"5:45 – 6:15 PM",k:"event",h:"Bunk time",i:[
+ {t:"All program staff assigned to bunks"},
+ {t:"Pitch the night electives",f:1,g:"No owner listed."}]},
+
+{t:"6:15 – 7:00 PM",k:"event",h:"Soirée en Blanc",i:[]},
+
+{t:"7:10 – 7:50 PM",k:"event",h:"Shabbat Services",i:[
+ {t:"Shabbat-O-Grams run out to pillows during services",m:"4 people, 2 golf carts"}]},
+
+{t:"8:00 – 9:00 PM",k:"event",h:"Shabbat Dinner",i:[
+ {t:"Light the votive candles",l:"prod"},
+ {t:"Candle lighting — Israelis"},
+ {t:"Alumni ceremony — bring swag from the office",m:"Assist from Adam and Josh"}]},
+
+{t:"9:00 PM",p:1,k:"prep",h:"Dinner strike + Night Electives build",loc:"Manor House Lawn &amp; satellites",i:[
+ {t:"Letters and lights back to the plaque barn",l:"prod"},
+ {t:"Everyone not running a night elective is on clean-up"},
+ {t:"Campfire, benches in a circle, extra wood, lighter, s'mores — Manor House Lawn"},
+ {t:"4 tables for bartender / s'mores snacks",l:"prod"},
+ {t:"4 mics if possible",l:"av"},
+ {t:"Patio lights on at the Manor House — ask Pele"},
+ {t:"2 tables, papered, for Dror's mixology",l:"prod"},
+ {t:"Wireless speaker with mic, yoga mats, Eddie Bauer picnic blankets → soccer field",l:"av"},
+ {t:"Glow bracelets for the ghost hike"},
+ {t:"Glow sticks for the night zipline"}]},
+
+{t:"9:00 – 9:30 PM",k:"event",h:"Transition &amp; Change",i:[]},
+
+{t:"9:30 – 11:00 PM",k:"event",h:"Night Electives",loc:"Gather at BBG at 9:30, then head to locations",i:[
+ {t:"Star party @ soccer field — Rick"},
+ {t:"Ghost hike — Jeff, Yael (14 people)"},
+ {t:"Tricked Out S'mores @ Manor House Lawn — Liz",m:"Liz's own supplies"},
+ {t:"Israeli Mixology @ Manor House — Dror",m:"Dror's own ingredients"},
+ {t:"Night zipline",f:1},
+ {t:"Elective presentations, Rounds 4–5"},
+ {t:"Staff meeting"}]},
+
+{t:"11:00 PM – 12:00 AM",k:"event",h:"After Hours Campfire",i:[
+ {t:"Staff assignments",f:1,g:"Doc says \"Assignments TBD\"."},
+ {t:"Josh: tap Color War captains"}]},
+
+{t:"12:00 AM",k:"hard",h:"CONFIRM FIRES ARE OUT",i:[]},
+
+{t:"Overnight",p:1,k:"prep",h:"Evening homework",loc:"Or pre-camp if there's time",i:[
+ {t:"Elective sheets"},
+ {t:"Prize notecards"},
+ {t:"Print Connections"},
+ {t:"Trybal Tribune"}]}
+]};
+</script>
+<script>window.__ST__={"checks":{},"leads":{},"moves":{},"deleted":{},"seq":0};</script>
+<script>
+(function(){
+var LANES={eisner:"Eisner",prod:"Production",av:"A/V",aaron:"FART Barn"};
+var PEOPLE=["Aaron","Philippe","Justin","Hannah","Shawn","Sam"];
+var DAYNAME={thu:"Thu",fri:"Fri"};
+var P_STATE="{{"+"STATE}}", P_SRC="{{"+"SRC}}";
+var PKEY="trybal-s2-pending", VKEY="trybal-s2-view", AKEY="trybal-s2-attempts", LKEY="trybal-s2-local";
+
+/* ---------- block index ---------- */
+var BLOCKS=[], BYKEY={};
+["thu","fri"].forEach(function(d){
+  DATA[d].forEach(function(b,bi){
+    var B={key:d+"-"+bi,d:d,bi:bi,b:b}; BLOCKS.push(B); BYKEY[B.key]=B;
+  });
+});
+function homeOf(id){ var p=id.split("-"); return p[0]+"-"+p[1]; }
+function itemById(id){ var p=id.split("-"); var b=DATA[p[0]][+p[1]]; return b?b.i[+p[2]]:null; }
+function slotLabel(k){ var B=BYKEY[k]; return DAYNAME[B.d]+" · "+B.b.t; }
+function slotFull(k){ var B=BYKEY[k]; return DAYNAME[B.d]+" · "+B.b.t+(B.b.p?" (proposed)":"")+" — "+strip(B.b.h); }
+function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function strip(t){ var d=document.createElement("div"); d.innerHTML=t; return d.textContent; }
+
+/* ---------- shared state ---------- */
+function blank(){ return {checks:{},leads:{},moves:{},deleted:{},seq:0}; }
+var BASE=blank();
+try{
+  var raw=window.__ST__;
+  if(raw&&typeof raw==="object"){
+    BASE.checks=raw.checks||{}; BASE.leads=raw.leads||{}; BASE.moves=raw.moves||{};
+    BASE.deleted=raw.deleted||{};
+    BASE.seq=typeof raw.seq==="number"?raw.seq:0;
+  }
+}catch(e){}
+
+function ssGet(k,f){ try{ var v=sessionStorage.getItem(k); return v?JSON.parse(v):f; }catch(e){ return f; } }
+function ssSet(k,v){ try{ sessionStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function ssDel(k){ try{ sessionStorage.removeItem(k); }catch(e){} }
+
+var pending=ssGet(PKEY,[]); if(!Array.isArray(pending)) pending=[];
+var state=blank();
+
+var MKEY="trybal-s2-mirror", MIRROR0=null;
+try{ MIRROR0=JSON.parse(localStorage.getItem(MKEY)||"null"); }catch(e){ MIRROR0=null; }
+function recompute(){
+  state={checks:{},leads:{},moves:{},deleted:{},seq:BASE.seq||0};
+  ["checks","leads","moves","deleted"].forEach(function(g){
+    Object.keys(BASE[g]).forEach(function(k){ state[g][k]=BASE[g][k]; });
+  });
+  pending.forEach(function(op){
+    var g=op[0], id=op[1], v=op[2];
+    if(v===null) delete state[g][id]; else state[g][id]=v;
+  });
+  try{ localStorage.setItem(MKEY,JSON.stringify(state)); }catch(e){}
+}
+
+/* If a rebuild is republished with a blank board, restore the newest board this
+   device has seen and push it back up. seq only rises on a real publish, so a
+   deliberate Reset (which publishes a higher seq) is never undone by a mirror. */
+function recoverMirror(){
+  var m=MIRROR0;
+  if(!m||typeof m!=="object") return false;
+  var mine=typeof m.seq==="number"?m.seq:0;
+  if(mine<=(BASE.seq||0)) return false;
+  var n=Object.keys(m.checks||{}).length+Object.keys(m.leads||{}).length
+       +Object.keys(m.moves||{}).length+Object.keys(m.deleted||{}).length;
+  if(!n) return false;
+  BASE={checks:m.checks||{},leads:m.leads||{},moves:m.moves||{},deleted:m.deleted||{},seq:mine};
+  recompute();
+  return true;
+}
+function push(g,id,v){
+  pending.push([g,id,v]); ssSet(PKEY,pending); recompute();
+  if(mode==="local") saveLocal();
+  scheduleSave();
+}
+function saveLocal(){ try{ localStorage.setItem(LKEY,JSON.stringify(state)); }catch(e){} }
+
+/* ---------- derived ---------- */
+function destOf(id){ var m=state.moves[id]; return (m&&BYKEY[m])?m:homeOf(id); }
+function defLead(it){ return it.l==="av" ? "Justin" : ""; }
+function leadOf(id,it){ return Object.prototype.hasOwnProperty.call(state.leads,id) ? state.leads[id] : defLead(it); }
+function isAuto(id,it){ return !Object.prototype.hasOwnProperty.call(state.leads,id) && defLead(it)!==""; }
+function bucket(v){ return v==="" ? "none" : (PEOPLE.indexOf(v)>-1 ? v : "other"); }
+function grouped(){
+  var g={};
+  BLOCKS.forEach(function(B){ g[B.key]=[]; });
+  BLOCKS.forEach(function(B){
+    (B.b.i||[]).forEach(function(it,ii){
+      var id=B.key+"-"+ii;
+      if(state.deleted[id]) return;
+      var dest=destOf(id);
+      g[dest].push({id:id,it:it,home:B.key,moved:dest!==B.key});
+    });
+  });
+  Object.keys(g).forEach(function(k){ g[k].sort(function(a,b){ return (a.moved?1:0)-(b.moved?1:0); }); });
+  return g;
+}
+
+/* ---------- sync engine ---------- */
+var api=null, mode="init", saveTimer=null, saving=false, stale=false, lost=false;
+var statusEl=document.getElementById("status");
+
+function setMode(m){ mode=m; paint(); }
+function paint(){
+  if(!statusEl) return;
+  var t,c;
+  if(mode==="live"){
+    if(lost){ t="Change not saved"; c="warn"; }
+    else if(stale){ t="Updating…"; c="ok"; }
+    else if(pending.length||saving){ t="Saving…"; c="ok"; }
+    else { t="Live · shared"; c="ok"; }
+  }
+  else if(mode==="local"){ t="This device only"; c="warn"; }
+  else if(mode==="readonly"){ t="View only"; c="warn"; }
+  else { t="Connecting…"; c=""; }
+  statusEl.textContent=t; statusEl.className="status "+c;
+  document.body.classList.toggle("ro", mode==="readonly");
+}
+
+function scheduleSave(){
+  paint();
+  if(mode!=="live") return;
+  if(saveTimer) clearTimeout(saveTimer);
+  saveTimer=setTimeout(doSave,1400);
+}
+
+var CT="<"+"/script", CTE="<"+"\\/script";
+function buildDoc(){
+  var el=document.getElementById("src"); if(!el) return null;
+  var SRC=el.textContent.split(CTE).join(CT);
+  var out=SRC.replace(P_STATE,function(){ return "window.__ST__="+JSON.stringify(state)+";"; });
+  out=out.replace(P_SRC,function(){
+    return '<script type="text/plain" id="src">'+SRC.split(CT).join(CTE)+CT+'>';
+  });
+  return out;
+}
+
+function doSave(){
+  if(mode!=="live"||saving||!pending.length||!api) return;
+  state.seq=(BASE.seq||0)+1;
+  try{ localStorage.setItem(MKEY,JSON.stringify(state)); }catch(e){}
+  var doc=buildDoc();
+  if(!doc){ setMode("local"); saveLocal(); return; }
+  saving=true; paint();
+  ssSet(VKEY,{day:day,fil:fil,leadFil:leadFil,q:searchEl?searchEl.value:"",y:window.scrollY});
+  api.publish(doc).then(function(){
+    pending=[]; ssDel(PKEY); ssDel(AKEY); saving=false; stale=false; lost=false; paint();
+  },function(err){
+    saving=false;
+    var code=(err&&err.code)||"upstream_error";
+    if(code==="conflict"){
+      var n=(ssGet(AKEY,0)||0)+1; ssSet(AKEY,n);
+      if(n>6){ pending=[]; ssDel(PKEY); ssDel(AKEY); lost=true; setTimeout(function(){ lost=false; paint(); },6000); }
+      else { stale=true; }
+      paint(); return;
+    }
+    if(code==="not_writer"||code==="not_granted"||code==="not_declared"||code==="consent_required"||code==="capability_disabled"||code==="capability_removed"){
+      setMode("readonly"); return;
+    }
+    if(code==="rate_limited"){ if(saveTimer) clearTimeout(saveTimer); saveTimer=setTimeout(doSave,6000); paint(); return; }
+    if(code==="too_large"||code==="invalid_content"||code==="transform_error"){ setMode("local"); saveLocal(); return; }
+    if(saveTimer) clearTimeout(saveTimer);
+    saveTimer=setTimeout(doSave,2500+Math.floor(Math.random()*2000));
+    paint();
+  });
+}
+
+function startSync(){
+  if(!window.claude||!claude.use){ goLocal(); return; }
+  claude.use("artifact").then(function(ns){
+    if(!ns){ goLocal(); return; }
+    api=ns; setMode("live");
+    if(recovered&&!pending.length){ pending.push(["checks","__restore__",null]); ssSet(PKEY,pending); recompute(); }
+    if(pending.length) setTimeout(doSave,600+Math.floor(Math.random()*900));
+  },function(){ goLocal(); });
+}
+function goLocal(){
+  var loc=null;
+  try{ loc=JSON.parse(localStorage.getItem(LKEY)||"null"); }catch(e){}
+  if(loc&&typeof loc==="object"){
+    ["checks","leads","moves"].forEach(function(g){
+      Object.keys(loc[g]||{}).forEach(function(k){
+        if(!pending.some(function(o){ return o[0]===g&&o[1]===k; })) BASE[g][k]=loc[g][k];
+      });
+    });
+    recompute();
+  }
+  setMode("local"); saveLocal(); build(day);
+}
+
+/* ---------- rendering ---------- */
+var tl=document.getElementById("tl");
+var day="thu", fil="all", leadFil="all", q="";
+
+function hay(e,B){
+  return [strip(e.it.t), e.it.m||"", e.it.g||"", strip(B.b.h), B.b.loc||"",
+          e.it.l?LANES[e.it.l]:"", leadOf(e.id,e.it), B.b.t].join(" ").toLowerCase();
+}
+function hi(html,needle){
+  if(!needle) return html;
+  var out="", depth=0, buf="";
+  for(var i=0;i<html.length;i++){
+    var ch=html[i];
+    if(ch==="<"){ out+=mark(buf); buf=""; depth++; out+=ch; continue; }
+    if(ch===">"){ depth--; out+=ch; continue; }
+    if(depth>0) out+=ch; else buf+=ch;
+  }
+  out+=mark(buf);
+  return out;
+  function mark(t){
+    if(!t) return t;
+    var lo=t.toLowerCase(), res="", from=0, at;
+    while((at=lo.indexOf(needle,from))>-1){
+      res+=t.slice(from,at)+"<mark>"+t.slice(at,at+needle.length)+"</mark>";
+      from=at+needle.length;
+    }
+    return res+t.slice(from);
+  }
+}
+
+function selectHTML(id,it){
+  var v=leadOf(id,it), b=bucket(v), auto=isAuto(id,it);
+  var who = b==="none" ? "" : (b==="other" ? "other" : v);
+  var h='<select class="lead'+(auto?" auto":"")+'" data-id="'+id+'" data-who="'+who+'" aria-label="Lead for this task">';
+  h+='<option value=""'+(b==="none"?" selected":"")+'>+ Lead</option>';
+  PEOPLE.forEach(function(n){ h+='<option value="'+n+'"'+(v===n?" selected":"")+'>'+n+'</option>'; });
+  if(b==="other") h+='<option value="'+esc(v)+'" selected>'+esc(v)+'</option>';
+  h+='<option value="__other__">Other…</option></select>';
+  return h;
+}
+function rowHTML(e){
+  var it=e.it, id=e.id;
+  var h='<div class="rowwrap"><label class="row"><input type="checkbox" data-id="'+id+'"'+(state.checks[id]?" checked":"")+'><span class="txt">'+it.t;
+  if(it.l) h+='<span class="lane '+it.l+'">'+LANES[it.l]+'</span>';
+  if(it.f && leadOf(id,it)==="") h+='<span class="flagpill">Needs owner</span>';
+  if(it.m) h+='<span class="meta">'+it.m+'</span>';
+  if(it.g) h+='<span class="gap">'+it.g+'</span>';
+  if(e.moved) h+='<span class="movedfrom">↳ moved from '+slotLabel(e.home)+'<button class="undo" data-undo="'+id+'">undo</button></span>';
+  h+='</span></label><span class="leadwrap">'+selectHTML(id,it)
+    +'<span class="rowacts"><button class="movebtn" data-move="'+id+'">Move</button>'
+    +'<button class="delbtn" data-del="'+id+'">Delete</button></span></span></div>';
+  return q ? hi(h,q) : h;
+}
+function build(d){
+  var g=grouped();
+  tl.innerHTML="";
+  var note=document.getElementById("srnote");
+  if(q){
+    var hits=0, blocks=0;
+    BLOCKS.forEach(function(B){
+      var list=g[B.key].filter(function(e){ return hay(e,B).indexOf(q)>-1; });
+      if(!list.length) return;
+      blocks++; hits+=list.length;
+      tl.appendChild(sectionFor(B.b,B.key,list,B.d));
+    });
+    note.hidden=false;
+    note.innerHTML = hits
+      ? "<b>"+hits+"</b> task"+(hits===1?"":"s")+" in "+blocks+" slot"+(blocks===1?"":"s")+" across both days"
+      : "<b>No matches.</b> Deleted tasks are not searched \u2014 check the list at the bottom.";
+    applyFilter(); tally(); renderOpen(); renderTrash(); paint();
+    return;
+  }
+  note.hidden=true;
+  DATA[d].forEach(function(b,bi){
+    var key=d+"-"+bi;
+    tl.appendChild(sectionFor(b,key,g[key],null));
+  });
+  applyFilter(); tally(); renderOpen(); renderTrash(); paint();
+}
+
+function sectionFor(b,key,list,dayTag){
+  var sec=document.createElement("section");
+  sec.className="block "+(b.k==="prep"?"prep":b.k==="hard"?"hard":"");
+  var head='<div class="thead"><span class="time">'+b.t+'</span>';
+  if(dayTag) head+='<span class="daytag">'+(dayTag==="thu"?"Thu 27":"Fri 28")+'</span>';
+  if(b.p) head+='<span class="tag prop">Proposed</span>';
+  if(b.k==="hard") head+='<span class="tag hardt">Hard stop</span>';
+  head+='</div><h2>'+b.h+'</h2>';
+  if(b.loc) head+='<p class="loc">'+b.loc+'</p>';
+  sec.innerHTML=head;
+  if(list.length){
+    var ul=document.createElement("ul"); ul.className="tasks";
+    list.forEach(function(e){
+      var li=document.createElement("li");
+      li.dataset.lane=e.it.l||""; li.dataset.flag=e.it.f?"1":""; li.dataset.id=e.id;
+      if(e.moved) li.className="movedin";
+      li.innerHTML=rowHTML(e);
+      ul.appendChild(li);
+    });
+    sec.appendChild(ul);
+  } else if((b.i||[]).length && !q){
+    sec.insertAdjacentHTML("beforeend",'<p class="emptyblock">All tasks in this slot were moved or deleted.</p>');
+  }
+  return sec;
+}
+
+function renderTrash(){
+  var ids=Object.keys(state.deleted), box=document.getElementById("trash");
+  if(!ids.length){ box.hidden=true; return; }
+  box.hidden=false;
+  document.getElementById("trashhead").textContent="Deleted tasks ("+ids.length+")";
+  var rows=[];
+  BLOCKS.forEach(function(B){
+    (B.b.i||[]).forEach(function(it,ii){
+      var id=B.key+"-"+ii;
+      if(!state.deleted[id]) return;
+      rows.push('<li><span class="tw">'+strip(it.t)
+        +'<span class="ts">'+slotLabel(destOf(id))+" &middot; "+strip(B.b.h)+'</span></span>'
+        +'<button class="restore" data-restore="'+id+'">Restore</button></li>');
+    });
+  });
+  document.getElementById("trashlist").innerHTML=rows.join("");
+}
+function applyFilter(){
+  var em=document.getElementById("emptymsg"); if(em) em.remove();
+  var any=false;
+  Array.prototype.forEach.call(tl.querySelectorAll(".block"),function(sec){
+    var lis=sec.querySelectorAll(".tasks li"), shown=0;
+    Array.prototype.forEach.call(lis,function(li){
+      var it=itemById(li.dataset.id), v=leadOf(li.dataset.id,it);
+      var laneOK = fil==="all" ? true : (fil==="flag" ? (li.dataset.flag==="1" && v==="") : li.dataset.lane===fil);
+      var leadOK = leadFil==="all" ? true : bucket(v)===leadFil;
+      var ok=laneOK&&leadOK;
+      li.classList.toggle("hide",!ok);
+      if(ok) shown++;
+    });
+    var filtering=!(fil==="all"&&leadFil==="all");
+    sec.style.display = filtering&&!shown ? "none" : "";
+    if(!filtering||shown) any=true;
+  });
+  if(!any) tl.insertAdjacentHTML("beforeend",'<p class="empty" id="emptymsg">Nothing matches those filters.</p>');
+}
+function tally(){
+  var boxes=tl.querySelectorAll('.tasks li:not(.hide) input[type=checkbox]');
+  var done=0;
+  Array.prototype.forEach.call(boxes,function(b){ if(b.checked) done++; });
+  document.getElementById("pnum").textContent=done+"/"+boxes.length;
+  document.getElementById("fill").style.width=(boxes.length?(done/boxes.length*100):0)+"%";
+  var g=grouped(), c={other:0,none:0}, mv=0;
+  PEOPLE.forEach(function(n){ c[n]=0; });
+  if(q){
+    BLOCKS.forEach(function(B){
+      g[B.key].forEach(function(e){
+        if(hay(e,B).indexOf(q)<0) return;
+        c[bucket(leadOf(e.id,e.it))]++; if(e.moved) mv++;
+      });
+    });
+  } else {
+    DATA[day].forEach(function(b,bi){
+      g[day+"-"+bi].forEach(function(e){ c[bucket(leadOf(e.id,e.it))]++; if(e.moved) mv++; });
+    });
+  }
+  var h="";
+  PEOPLE.forEach(function(n){ if(c[n]) h+='<span class="chip" data-who="'+n+'">'+n+' '+c[n]+'</span>'; });
+  if(c.other) h+='<span class="chip">Other '+c.other+'</span>';
+  h+='<span class="chip'+(c.none?" none":"")+'">No lead '+c.none+'</span>';
+  if(mv) h+='<span class="chip mv">Moved in '+mv+'</span>';
+  document.getElementById("tally2").innerHTML=h;
+}
+function renderOpen(){
+  var g=grouped(), open=[];
+  BLOCKS.forEach(function(B){
+    g[B.key].forEach(function(e){
+      var v=leadOf(e.id,e.it), txt=strip(e.it.t), where="<b>"+slotLabel(B.key)+"</b> — ";
+      if(e.it.f&&v==="") open.push(where+txt);
+      else if(e.it.g) open.push(where+txt+": "+strip(e.it.g));
+    });
+  });
+  document.getElementById("openlist").innerHTML =
+    open.length ? open.map(function(o){return "<li>"+o+"</li>";}).join("")
+                : '<li>Every doc-blank task now has a lead. Only the schedule conflicts above are left.</li>';
+}
+function refreshRow(id){
+  var li=tl.querySelector('li[data-id="'+id+'"]'); if(!li) return;
+  var it=itemById(id), dest=destOf(id);
+  li.innerHTML=rowHTML({id:id,it:it,home:homeOf(id),moved:dest!==homeOf(id)});
+}
+
+/* ---------- move sheet ---------- */
+var sheet=document.getElementById("sheet"), sheetList=document.getElementById("sheetlist"),
+    sheetTitle=document.getElementById("sheettitle"), moveId=null, lastFocus=null;
+function openSheet(id){
+  if(mode==="readonly") return;
+  moveId=id; lastFocus=document.activeElement;
+  var it=itemById(id), cur=destOf(id), home=homeOf(id), h="", curDay="";
+  sheetTitle.textContent=strip(it.t);
+  BLOCKS.forEach(function(B){
+    if(B.d!==curDay){ curDay=B.d; h+='<div class="slotday">'+(B.d==="thu"?"Thursday · Aug 27":"Friday · Aug 28")+'</div>'; }
+    h+='<button class="slot" data-slot="'+B.key+'" data-cur="'+(B.key===cur?1:0)+'" data-home="'+(B.key===home?1:0)+'">'
+      +'<span class="st">'+B.b.t+'</span><span class="sh">'+B.b.h
+      +(B.b.p?' <span class="sm">proposed</span>':'')
+      +(B.key===cur?' <span class="sm">· current</span>':'')+'</span></button>';
+  });
+  sheetList.innerHTML=h; sheet.hidden=false; document.body.style.overflow="hidden";
+  var c=sheetList.querySelector('.slot[data-cur="1"]');
+  (c||sheetList.querySelector(".slot")).focus({preventScroll:true});
+  if(c) c.scrollIntoView({block:"center"});
+}
+function closeSheet(){
+  sheet.hidden=true; moveId=null; document.body.style.overflow="";
+  if(lastFocus&&lastFocus.focus) try{ lastFocus.focus(); }catch(e){}
+}
+sheet.addEventListener("click",function(e){
+  if(e.target.hasAttribute("data-close")){ closeSheet(); return; }
+  var btn=e.target.closest("[data-slot]");
+  if(btn&&moveId){
+    var id=moveId, key=btn.dataset.slot;
+    push("moves",id,key===homeOf(id)?null:key);
+    closeSheet(); build(day);
+  }
+});
+document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!sheet.hidden) closeSheet(); });
+
+/* ---------- interactions ---------- */
+var armedDel=null, armedTimer=null;
+function disarm(){
+  if(armedDel){ var b=tl.querySelector('[data-del="'+armedDel+'"]');
+    if(b){ b.textContent="Delete"; b.classList.remove("armed"); } }
+  armedDel=null; clearTimeout(armedTimer);
+}
+tl.addEventListener("click",function(e){
+  var mv=e.target.closest("[data-move]");
+  if(mv){ e.preventDefault(); disarm(); openSheet(mv.dataset.move); return; }
+  var un=e.target.closest("[data-undo]");
+  if(un){ e.preventDefault(); if(mode==="readonly") return; push("moves",un.dataset.undo,null); build(day); return; }
+  var dl=e.target.closest("[data-del]");
+  if(dl){
+    e.preventDefault();
+    if(mode==="readonly") return;
+    var id=dl.dataset.del;
+    if(armedDel!==id){
+      disarm(); armedDel=id;
+      dl.textContent="Delete?"; dl.classList.add("armed");
+      armedTimer=setTimeout(disarm,4000);
+      return;
+    }
+    disarm();
+    push("deleted",id,1);
+    build(day);
+    return;
+  }
+  disarm();
+});
+document.getElementById("trashlist").addEventListener("click",function(e){
+  var r=e.target.closest("[data-restore]");
+  if(!r||mode==="readonly") return;
+  push("deleted",r.dataset.restore,null);
+  build(day);
+});
+tl.addEventListener("change",function(e){
+  var el=e.target;
+  if(mode==="readonly"){ build(day); return; }
+  if(el.type==="checkbox"){
+    push("checks",el.dataset.id, el.checked?1:null);
+    tally(); return;
+  }
+  if(el.classList.contains("lead")){
+    var id=el.dataset.id;
+    if(el.value==="__other__"){ showOther(el,id); return; }
+    push("leads",id,el.value);
+    refreshRow(id); applyFilter(); tally(); renderOpen();
+  }
+});
+function showOther(sel,id){
+  var wrap=sel.parentNode;
+  var cur=state.leads[id]&&PEOPLE.indexOf(state.leads[id])<0?state.leads[id]:"";
+  sel.outerHTML='<input class="othin" type="text" maxlength="20" placeholder="Name" value="'+esc(cur)+'">';
+  var inp=wrap.querySelector(".othin"); inp.focus(); inp.select();
+  var done=false;
+  function commit(ok){
+    if(done) return; done=true;
+    var val=ok?inp.value.trim():"";
+    push("leads",id, (ok&&val)?val:(ok?null:(state.leads[id]||null)));
+    refreshRow(id); applyFilter(); tally(); renderOpen();
+  }
+  inp.addEventListener("keydown",function(ev){
+    if(ev.key==="Enter"){ ev.preventDefault(); commit(true); }
+    if(ev.key==="Escape"){ commit(false); }
+  });
+  inp.addEventListener("blur",function(){ commit(true); });
+}
+
+/* ---------- chrome ---------- */
+Array.prototype.forEach.call(document.querySelectorAll(".day"),function(btn){
+  btn.addEventListener("click",function(){
+    day=btn.dataset.day;
+    document.querySelectorAll(".day").forEach(function(b){ b.setAttribute("aria-pressed", b===btn?"true":"false"); });
+    build(day); window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+Array.prototype.forEach.call(document.querySelectorAll(".fil[data-fil]"),function(btn){
+  btn.addEventListener("click",function(){
+    fil=btn.dataset.fil;
+    document.querySelectorAll(".fil[data-fil]").forEach(function(b){ b.setAttribute("aria-pressed", b===btn?"true":"false"); });
+    applyFilter(); tally();
+  });
+});
+Array.prototype.forEach.call(document.querySelectorAll(".fil[data-lead]"),function(btn){
+  btn.addEventListener("click",function(){
+    leadFil=btn.dataset.lead;
+    document.querySelectorAll(".fil[data-lead]").forEach(function(b){ b.setAttribute("aria-pressed", b===btn?"true":"false"); });
+    applyFilter(); tally();
+  });
+});
+var searchEl=document.getElementById("search"), searchX=document.getElementById("searchx"), qTimer=null;
+function applyQuery(v){
+  q=(v||"").trim().toLowerCase();
+  searchX.hidden=!q;
+  document.body.classList.toggle("searching",!!q);
+  build(day);
+}
+searchEl.addEventListener("input",function(){
+  var v=searchEl.value;
+  clearTimeout(qTimer);
+  qTimer=setTimeout(function(){ applyQuery(v); },160);
+});
+searchEl.addEventListener("keydown",function(e){
+  if(e.key==="Escape"){ e.preventDefault(); searchEl.value=""; clearTimeout(qTimer); applyQuery(""); searchEl.blur(); }
+});
+searchX.addEventListener("click",function(){
+  searchEl.value=""; clearTimeout(qTimer); applyQuery(""); searchEl.focus();
+});
+
+var resetBtn=document.getElementById("reset"), armed=false, armTimer=null;
+resetBtn.addEventListener("click",function(){
+  if(mode==="readonly") return;
+  if(!armed){
+    armed=true; resetBtn.textContent = mode==="live" ? "clear for everyone?" : "clear all?";
+    resetBtn.classList.add("armed");
+    armTimer=setTimeout(function(){ armed=false; resetBtn.textContent="reset"; resetBtn.classList.remove("armed"); },4000);
+    return;
+  }
+  clearTimeout(armTimer); armed=false; resetBtn.textContent="reset"; resetBtn.classList.remove("armed");
+  ["checks","leads","moves","deleted"].forEach(function(g){
+    Object.keys(state[g]).forEach(function(k){ pending.push([g,k,null]); });
+  });
+  ssSet(PKEY,pending); recompute();
+  if(mode==="local") saveLocal();
+  scheduleSave(); build(day);
+});
+
+document.getElementById("copybtn").addEventListener("click",function(){
+  var g=grouped(), by={};
+  BLOCKS.forEach(function(B){
+    g[B.key].forEach(function(e){
+      var v=leadOf(e.id,e.it)||"NO LEAD";
+      (by[v]=by[v]||[]).push(slotFull(B.key)+" — "+strip(e.it.t)+(e.moved?"  [moved from "+slotLabel(e.home)+"]":""));
+    });
+  });
+  var order=PEOPLE.concat(Object.keys(by).filter(function(k){return PEOPLE.indexOf(k)<0&&k!=="NO LEAD";})).concat(["NO LEAD"]);
+  var out="TRYBAL BERKSHIRES SESSION 2 — LEAD ASSIGNMENTS\n";
+  order.forEach(function(k){
+    if(!by[k]||!by[k].length) return;
+    out+="\n== "+k.toUpperCase()+" ("+by[k].length+") ==\n"+by[k].map(function(l){return "- "+l;}).join("\n")+"\n";
+  });
+  var btn=this;
+  function flash(m){ var o=btn.textContent; btn.textContent=m; setTimeout(function(){btn.textContent=o;},1600); }
+  function fallback(){
+    var ta=document.createElement("textarea"); ta.value=out; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); flash("Copied"); }catch(e){ flash("Copy failed"); }
+    document.body.removeChild(ta);
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(out).then(function(){flash("Copied");},fallback);
+  else fallback();
+});
+
+/* ---------- boot ---------- */
+recompute();
+var recovered=recoverMirror();
+var view=ssGet(VKEY,null);
+if(view&&view.day){
+  day=view.day; fil=view.fil||"all"; leadFil=view.leadFil||"all";
+  if(view.q){ searchEl.value=view.q; q=view.q.trim().toLowerCase(); searchX.hidden=!q; document.body.classList.toggle("searching",!!q); }
+  document.querySelectorAll(".day").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.day===day?"true":"false"); });
+  document.querySelectorAll(".fil[data-fil]").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.fil===fil?"true":"false"); });
+  document.querySelectorAll(".fil[data-lead]").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.lead===leadFil?"true":"false"); });
+}
+build(day);
+if(view&&typeof view.y==="number"){ window.scrollTo(0,view.y); ssDel(VKEY); }
+startSync();
+})();
+
+</script>
+</body>
+</html>
