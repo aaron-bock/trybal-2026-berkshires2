@@ -2192,7 +2192,6 @@ const DATA={
     },
     {
      "t": "Dance floor: Ari, Josh, Harris, Rose, Jeff, Brooklyn, Aaron, Yael",
-     "l": "aaron",
      "id": "sat-1f63mx3.3g8j41"
     },
     {
@@ -2613,7 +2612,7 @@ function grouped(){
 
 /* ---------- sync engine ---------- */
 var api=null, mode="init", saveTimer=null, saving=false, stale=false, lost=false;
-var fb=null, online=true, deferRender=false;
+var fb=null, online=true, deferRender=false, writeBlocked=false, writeCode="";
 var statusEl=document.getElementById("status");
 
 function setMode(m){ mode=m; paint(); }
@@ -2641,6 +2640,31 @@ window.__onSyncReady=function(sync){
     }
   });
   sync.onConn(function(ok){ online=ok; paint(); });
+  if(sync.probe) sync.probe();
+};
+
+window.__onWriteOK=function(){
+  if(writeBlocked){ writeBlocked=false; writeCode=""; var s=document.getElementById("setup"); if(s) s.hidden=true; }
+  paint();
+};
+window.__onWriteFail=function(code){
+  writeBlocked=true; writeCode=code||"";
+  var denied=writeCode.toLowerCase().indexOf("permission")>-1;
+  var box=document.getElementById("setup");
+  if(box){
+    box.innerHTML='<h2>'+(denied?"The database is refusing to save":"Saves are failing")+'</h2>'
+      +'<p>The board loads, but nothing you change is being written, so it will be empty again on reload. '
+      +(denied
+        ? 'The Realtime Database rules grant read access but not write access.'
+        : 'The database returned <code>'+writeCode.replace(/[<>&]/g,"")+'</code>.')
+      +'</p>'
+      +(denied?'<p>Open <b>Realtime Database &rsaquo; Rules</b> in the Firebase console, paste this, and press '
+        +'<b>Publish</b> \u2014 both lines matter:</p>'
+        +'<pre>{\n  "rules": {\n    "boards": {\n      "$board": {\n        ".read": true,\n        ".write": true\n      }\n    }\n  }\n}</pre>':'')
+      +'<p class="warn">Nothing is lost by leaving this page open \u2014 fix the rules, reload, and carry on.</p>';
+    box.hidden=false;
+  }
+  paint();
 };
 window.__onSyncFail=function(reason){
   var box=document.getElementById("setup");
@@ -2666,7 +2690,8 @@ function paint(){
   if(!statusEl) return;
   var t,c;
   if(mode==="live"&&fb){
-    if(!online){ t="Offline \u2014 will catch up"; c="warn"; }
+    if(writeBlocked){ t="Not saving \u2014 see below"; c="warn"; }
+    else if(!online){ t="Offline \u2014 will catch up"; c="warn"; }
     else { t="Live \u00b7 shared"; c="ok"; }
     statusEl.textContent=t; statusEl.className="status "+c;
     document.body.classList.remove("ro");
@@ -3195,7 +3220,20 @@ if (window.__NEEDS_SETUP) {
       write(group, id, value) {
         const patch = {};
         patch[group + "/" + id] = (value === null ? null : value);
-        update(board, patch).catch(e => console.error("[sync] write failed", e));
+        update(board, patch).catch(e => {
+          console.error("[sync] write failed", e);
+          window.__onWriteFail(String((e && (e.code || e.message)) || "unknown"));
+        });
+      },
+      /* Probe write permission on load so a blocked board is obvious
+         immediately, instead of only when someone ticks something. */
+      probe() {
+        update(board, { "meta/lastOpen": Date.now() })
+          .then(() => window.__onWriteOK())
+          .catch(e => {
+            console.error("[sync] write probe failed", e);
+            window.__onWriteFail(String((e && (e.code || e.message)) || "unknown"));
+          });
       },
       onBoard(fn) {
         onValue(board, s => fn(s.val()), e => {
